@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InnovateForGood - Marketing Systems That Generate Predictable Revenue</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 100px;
+  background: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 140, 66, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 107, 53, 0.15);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  color: #ffa366;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 28px;
+  color: #ffffff;
+  letter-spacing: -1.5px;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(135deg, #ff6b35 0%, #ffa366 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: clamp(19px, 2.5vw, 24px);
+  color: #cbd5e1;
+  margin-bottom: 48px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 36px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 17px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.trust-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trust-item strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+
+/* Social Proof Section */
+.social-proof {
+  background: #ffffff;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.proof-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.proof-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(40px, 5vw, 56px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff6b35 0%, #ffa366 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+/* Problem Section */
+.problem-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  padding: 100px 40px;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #ff6b35;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.section-subtitle {
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: #64748b;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.problem-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  border: 2px solid #f1f5f9;
+  transition: all 0.3s;
+}
+
+.problem-card:hover {
+  border-color: #ff6b35;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+
+.problem-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #fee5dc 0%, #ffd5c4 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.problem-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.problem-card p {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.problem-cost {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  font-weight: 700;
+  color: #dc2626;
+  font-size: 16px;
+}
+
+/* Solution Section */
+.solution-section {
+  background: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+  padding: 100px 40px;
+  color: white;
+}
+
+.solution-section .section-kicker {
+  color: #ffa366;
+}
+
+.solution-section .section-title {
+  color: white;
+}
+
+.solution-section .section-subtitle {
+  color: #cbd5e1;
+}
+
+.solution-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+}
+
+.solution-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s;
+}
+
+.solution-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 107, 53, 0.5);
+  transform: translateY(-4px);
+}
+
+.solution-number {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+
+.solution-card h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.solution-card p {
+  font-size: 16px;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+/* Results Section */
+.results-section {
+  background: white;
+  padding: 100px 40px;
+}
+
+.results-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.results-highlight {
+  background: linear-gradient(135deg, #fef5ec 0%, #fee5dc 100%);
+  border: 2px solid #ff6b35;
+  border-radius: 24px;
+  padding: 56px 48px;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.results-highlight .mega-stat {
+  font-size: clamp(56px, 8vw, 88px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.results-highlight p {
+  font-size: 20px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.metric-card {
+  background: #f8fafc;
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.metric-card:hover {
+  border-color: #ff6b35;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.metric-value {
+  font-size: 48px;
+  font-weight: 900;
+  color: #ff6b35;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.metric-label {
+  font-size: 16px;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+/* Investment Section */
+.investment-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  padding: 100px 40px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 64px auto 0;
+}
+
+.pricing-card {
+  background: white;
+  border: 3px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.pricing-card:hover {
+  border-color: #ff6b35;
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+}
+
+.pricing-card.featured {
+  border-color: #ff6b35;
+  border-width: 3px;
+  background: linear-gradient(135deg, #fef5ec 0%, #ffffff 100%);
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.15);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.pricing-card h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+.pricing-card .price {
+  font-size: 56px;
+  font-weight: 900;
+  color: #ff6b35;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.pricing-card .price-small {
+  font-size: 36px;
+}
+
+.pricing-card .period {
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 32px;
+  font-weight: 600;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.pricing-features li {
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 15px;
+  color: #4a5568;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.pricing-features li:last-child {
+  border-bottom: none;
+}
+
+.pricing-features li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: 900;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.pricing-cta {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 17px;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+}
+
+.pricing-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.35);
+}
+
+.pricing-cta.secondary {
+  background: white;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
+  box-shadow: none;
+}
+
+.pricing-cta.secondary:hover {
+  background: #fef5ec;
+}
+
+/* CTA Section */
+.final-cta {
+  background: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+  padding: 100px 40px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 140, 66, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.final-cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.final-cta h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.final-cta p {
+  font-size: 22px;
+  color: #cbd5e1;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.final-cta .cta-button {
+  font-size: 19px;
+  padding: 20px 48px;
+}
+
+.urgency-note {
+  margin-top: 32px;
+  padding: 20px;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 12px;
+  font-size: 15px;
+  color: #ffa366;
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  background: #0a1929;
+  color: white;
+  padding: 80px 40px 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.footer-col a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.footer-col a:hover {
+  color: #ff6b35;
+}
+
+.footer-trust {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 32px 0;
+  margin-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.trust-signal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trust-signal span:first-child {
+  font-size: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 32px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 120px 24px 80px;
+  }
+  
+  .problem-section,
+  .solution-section,
+  .results-section,
+  .investment-section,
+  .final-cta {
+    padding: 80px 24px;
+  }
+  
+  .cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cta-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .trust-bar {
+    gap: 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Built on Harvard-Validated Research</div>
+    <h1>Stop Losing <span class="highlight">$168,000 Annually</span> to Slow Follow-Up & Poor Mobile Experience</h1>
+    <p>The research-backed marketing system that transforms high-intent searches into booked appointments—automatically. Based on studies from Harvard Business Review, Google Research, and 2,200+ analyzed companies.</p>
+    <div class="cta-group">
+      <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="cta-button">
+        Book Your Strategy Call →
+      </a>
+      <span class="cta-button secondary" aria-hidden="true">
+        See The Industry Data
+      </span>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span>✓</span>
+        <span><strong>11%+</strong> target conversion (top 10% per Unbounce)</span>
+      </div>
+      <div class="trust-item">
+        <span>✓</span>
+        <span><strong>100x</strong> faster connection (Harvard Business Review)</span>
+      </div>
+      <div class="trust-item">
+        <span>✓</span>
+        <span><strong>$400K-$1.2M</strong> projected annual lift</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof Stats -->
+<section class="social-proof">
+  <div class="proof-content">
+    <div class="proof-label">Built on Published Industry Research</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">100x</div>
+        <div class="stat-label">Higher Connection Rate<br><small>Harvard Business Review</small></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">53%</div>
+        <div class="stat-label">Abandon Slow Sites<br><small>Google Research</small></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">11%+</div>
+        <div class="stat-label">Top 10% Conversion<br><small>Unbounce Study</small></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">35-50%</div>
+        <div class="stat-label">First Responder Win Rate<br><small>InsideSales.com</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="problem-section">
+  <div class="section-content">
+    <div class="section-header">
+      <div class="section-kicker">The Hidden Revenue Leak</div>
+      <h2 class="section-title">Every Day, You're Losing High-Value Customers to Response Time</h2>
+      <p class="section-subtitle">Motivated buyers search for your services at 11 PM, weekends, holidays. Your competitors' AI responds in 30 seconds. You call back tomorrow. The case is already lost.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">⏰</div>
+        <h3>Slow Response = Lost Revenue</h3>
+        <p>Studies show responding within 5 minutes makes you 100x more likely to convert. After 1 hour, conversion drops 80%.</p>
+        <div class="problem-cost">Cost per lost case: $5,000-$15,000</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📱</div>
+        <h3>Mobile Experience Matters</h3>
+        <p>53% of visitors abandon sites that take longer than 3 seconds to load. Your slow site is bleeding ad spend.</p>
+        <div class="problem-cost">Monthly waste: $8,000-$15,000</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🎯</div>
+        <h3>Poor Conversion Architecture</h3>
+        <p>Generic pages with confusing CTAs convert at 2-3%. Purpose-built pages convert at 8-12%.</p>
+        <div class="problem-cost">Annual opportunity cost: $200,000+</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <h3>No Visibility Into What Works</h3>
+        <p>You're flying blind without real-time attribution, qualification tracking, and revenue forecasting.</p>
+        <div class="problem-cost">Hidden cost: $3M+ over 5 years</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solution Section -->
+<section class="solution-section">
+  <div class="section-content">
+    <div class="section-header">
+      <div class="section-kicker">The Complete System</div>
+      <h2 class="section-title">How We Stop The Revenue Leak</h2>
+      <p class="section-subtitle">A three-part system that captures, qualifies, and converts high-intent buyers—automatically, 24/7.</p>
+    </div>
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="solution-number">1</div>
+        <h3>Speed Architecture</h3>
+        <p>Sub-2-second mobile pages and 30-second AI response ensure you're first to engage every motivated buyer—before they move to your competitor.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-number">2</div>
+        <h3>Conversion Science</h3>
+        <p>Purpose-built city pages with single-focus CTAs convert at 8-12% vs. industry average of 2-3%. Every element optimized to book the appointment.</p>
+      </div>
+      <div class="solution-card">
+        <div class="solution-number">3</div>
+        <h3>Revenue Transparency</h3>
+        <p>Real-time attribution, qualification tracking, and revenue forecasting. Know exactly what's working and where your next $100K is coming from.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results Section -->
+<section class="results-section">
+  <div class="results-container">
+    <div class="section-header">
+      <div class="section-kicker">Industry Performance Model</div>
+      <h2 class="section-title">What Research Predicts For Your Business</h2>
+      <p class="section-subtitle">When you implement top-10% conversion practices (per Unbounce), 100x faster response rates (per Harvard), and mobile-first design (per Google)—here's the opportunity</p>
+    </div>
+    
+    <div class="results-highlight">
+      <div class="mega-stat">$1.5M+</div>
+      <p>Projected Annual Revenue Lift • Research-Based Model</p>
+    </div>
+    
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">11%+</div>
+        <div class="metric-label">Target Conversion Rate<br><small>(Top 10% benchmark)</small></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">&lt;30s</div>
+        <div class="metric-label">AI Response Time<br><small>(vs 47hr industry avg)</small></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">40-60%</div>
+        <div class="metric-label">Target CPL Reduction<br><small>(WordStream data)</small></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">2,200%+</div>
+        <div class="metric-label">Projected ROI<br><small>(Conservative model)</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Investment Section -->
+<section class="investment-section">
+  <div class="section-content">
+    <div class="section-header">
+      <div class="section-kicker">Investment & Returns</div>
+      <h2 class="section-title">Choose Your Growth Path</h2>
+      <p class="section-subtitle">Transparent pricing. Guaranteed performance. Measurable ROI.</p>
+    </div>
+    
+    <div class="pricing-grid">
+      <!-- Strategy Call -->
+      <div class="pricing-card">
+        <h3>Strategy Call</h3>
+        <div class="price">Free</div>
+        <div class="period">30 minutes</div>
+        <ul class="pricing-features">
+          <li>Business assessment</li>
+          <li>Revenue leak analysis</li>
+          <li>Custom growth roadmap</li>
+          <li>No commitment required</li>
+          <li>Market viability check</li>
+        </ul>
+        <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="pricing-cta">Book Your Call</a>
+      </div>
+      
+      <!-- Complete System -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <h3>Complete Marketing System</h3>
+        <div class="price price-small">$9,997.97</div>
+        <div class="period">One-time setup fee</div>
+        <ul class="pricing-features">
+          <li>Full AI implementation</li>
+          <li>1 year tech support</li>
+          <li>No monthly fees ever</li>
+          <li>Multi-city campaigns</li>
+          <li>Performance guarantee</li>
+          <li>Real-time analytics</li>
+        </ul>
+        <a href="https://www.paypal.com/ncp/payment/XWDRCKVMXC9SL" target="_blank" class="pricing-cta">Get Started</a>
+      </div>
+      
+      <!-- Enterprise -->
+      <div class="pricing-card">
+        <h3>Multi-Location Program</h3>
+        <div class="price">Custom</div>
+        <div class="period">For 3+ locations</div>
+        <ul class="pricing-features">
+          <li>Everything in Complete System</li>
+          <li>Multi-location rollout</li>
+          <li>White-glove support</li>
+          <li>Dedicated success manager</li>
+          <li>Priority implementation</li>
+          <li>Custom integrations</li>
+        </ul>
+        <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="pricing-cta secondary">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="final-cta-content">
+    <h2>Ready to Stop Losing $100K+ in Revenue?</h2>
+    <p>Book a free strategy call. We'll show you exactly where you're losing money and how to fix it—in 30 minutes.</p>
+    <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="cta-button">
+      Book Your Free Strategy Call →
+    </a>
+    <div class="urgency-note">
+      ⚡ Limited to 3 new clients per month to ensure quality implementation
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>InnovateForGood</h4>
+      <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">
+        Marketing systems that transform businesses—and communities—for the better.
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li>Dental Practices</li>
+        <li>Artists & Creators</li>
+        <li>HVAC Contractors</li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li>Industry Data: $1.5M Opportunity</li>
+        <li>System Overview</li>
+        <li>Industry Evidence</li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li>About Us</li>
+        <li>Investment & Returns</li>
+        <li><a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-trust">
+    <div class="trust-signal">
+      <span>🔒</span>
+      <span>Secure Payments</span>
+    </div>
+    <div class="trust-signal">
+      <span>⚡</span>
+      <span>Fast Implementation</span>
+    </div>
+    <div class="trust-signal">
+      <span>📊</span>
+      <span>Performance Guaranteed</span>
+    </div>
+    <div class="trust-signal">
+      <span>🎯</span>
+      <span>Research-Backed</span>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    © 2025 InnovateForGood. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

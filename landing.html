@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsite Presentations - Innovate for Good</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --accent: #ff8c00;
+  --gold: #ffa500;
+  --card: rgba(255, 140, 0, 0.08);
+  --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: radial-gradient(1200px 800px at 50% -20%, rgba(255, 165, 0, 0.15), transparent), var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.tagline {
+  font-size: 20px;
+  color: #666;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.nav-card {
+  background: white;
+  border: 2px solid var(--card);
+  border-radius: 16px;
+  padding: 32px;
+  text-decoration: none;
+  color: var(--fg);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nav-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.2);
+  border-color: var(--accent);
+}
+
+.nav-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+
+.nav-card-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.nav-card-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: #999;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 36px;
+  }
+  
+  .tagline {
+    font-size: 18px;
+  }
+  
+  .nav-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sitenav{position:fixed;top:0;left:0;right:0;background:white;padding:16px 24px;display:flex;gap:24px;align-items:center;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.1);justify-content:center}
+.sitenav a{color:var(--fg);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s;padding:8px 12px;border-radius:6px}
+.sitenav a:hover{color:var(--accent);background:var(--card)}
+.sitenav a.home{font-weight:800;color:var(--accent);margin-right:auto}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a href="landing.html" class="home">InnovateForGood</a>
+  <a href="index.html">Transformation Deck</a>
+  <a href="microsites-deck.html">Microsites Deck</a>
+  <a href="long_form_sales_letter-2.html">Sales Letter</a>
+  <a href="innovateforgooduk.html">Book a Call</a>
+</nav>
+<div style="height:60px"></div>
+<div class="container">
+  <div class="header">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 16px; font-weight: 600;">For dental and healthcare practices</div>
+    <div class="logo">More high‑value cases. More impact. Less chaos.</div>
+    <div class="tagline">InnovateForGood helps you turn patient intent into booked treatment and predictable revenue—so your team can focus on care, not marketing.</div>
+  </div>
+
+  <div style="margin: 60px 0 40px 0;">
+    <h2 style="font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 32px; color: var(--accent);">What You Get</h2>
+    <div style="display: grid; gap: 16px; max-width: 720px; margin: 0 auto;">
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Consistent growth in high‑value case starts
+      </div>
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Faster follow‑up, fewer lost opportunities
+      </div>
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Higher case acceptance and better patient experience
+      </div>
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Revenue you can forecast, not hope for
+      </div>
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        More time back for your team
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: 60px 0;">
+    <h2 style="font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 32px; color: var(--accent);">Why Practices Choose Us</h2>
+    <div style="display: grid; gap: 16px; max-width: 720px; margin: 0 auto;">
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Built for how patients actually decide
+      </div>
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Proven, structured approach tailored to your market
+      </div>
+      <div style="padding: 20px; background: white; border-left: 4px solid var(--accent); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        Measurable results without long‑term contracts
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: 60px 0;">
+    <h2 style="font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 32px; color: var(--accent);">How It Works</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+      <div style="padding: 28px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-size: 36px; margin-bottom: 16px;">1️⃣</div>
+        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent);">Assess</h4>
+        <p style="font-size: 15px; line-height: 1.6; color: #666;">30‑minute call to pinpoint leaks and upside</p>
+      </div>
+      <div style="padding: 28px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-size: 36px; margin-bottom: 16px;">2️⃣</div>
+        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent);">Plan</h4>
+        <p style="font-size: 15px; line-height: 1.6; color: #666;">A focused 90‑day growth blueprint</p>
+      </div>
+      <div style="padding: 28px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-size: 36px; margin-bottom: 16px;">3️⃣</div>
+        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent);">Execute and Optimize</h4>
+        <p style="font-size: 15px; line-height: 1.6; color: #666;">We implement with you and tune for ROI</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin: 60px 0 40px 0; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--accent);">Who It's For</h3>
+    <p style="font-size: 17px; line-height: 1.7; color: #555;">
+      Growth‑minded practice owners and mission‑driven teams ready to scale results and community impact.
+    </p>
+  </div>
+
+  <div style="background: white; padding: 32px; border-radius: 12px; margin: 40px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--accent); text-align: center;">Trust</h4>
+    <div style="display: grid; gap: 12px; font-size: 15px; color: #666; text-align: center;">
+      <div>✓ Privacy‑first processes for healthcare</div>
+      <div>✓ Chosen by practices across multiple markets</div>
+    </div>
+  </div>
+
+  <div style="margin: 60px 0;">
+    <h2 style="font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 32px; color: var(--accent);">Explore Presentations</h2>
+    <div class="nav-grid">
+      <a href="index.html" class="nav-card">
+        <div class="nav-card-icon">🚀</div>
+        <div class="nav-card-title">Transformation Deck</div>
+        <div class="nav-card-description">
+          The $1.5M Revenue Transformation - Stop losing high-value cases to response time and build a predictable revenue engine.
+        </div>
+      </a>
+
+      <a href="microsites-deck.html" class="nav-card">
+        <div class="nav-card-icon">🌐</div>
+        <div class="nav-card-title">Microsites Deck</div>
+        <div class="nav-card-description">
+          City-Targeted Microsite Network - Predictable, scalable local lead generation for high-intent searches.
+        </div>
+      </a>
+
+      <a href="long_form_sales_letter-2.html" class="nav-card">
+        <div class="nav-card-icon">📄</div>
+        <div class="nav-card-title">Complete Sales Letter</div>
+        <div class="nav-card-description">
+          Detailed transformation system overview, ROI model, and implementation timeline with case studies.
+        </div>
+      </a>
+
+      <a href="innovateforgooduk.html" class="nav-card">
+        <div class="nav-card-icon">📅</div>
+        <div class="nav-card-title">Book a Strategy Call</div>
+        <div class="nav-card-description">
+          Request your Growth Assessment - 30-minute call to map demand, response time, and funnel opportunities.
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">InnovateForGood</p>
+    <p>Marketing that transforms practices—and communities—for the better.</p>
+    <p style="margin-top: 16px; font-size: 13px;">© 2024 Innovate for Good. All Rights Reserved.</p>
+  </div>
+</div>
+
+</body>
+</html>

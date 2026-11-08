@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Evidence Brief — Why Microsites + AI Intake Win Now | InnovateForGood</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 1.7;
+  color: #0f172a;
+  background: #f7f5ef;
+}
+
+/* Navigation - matches main site */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links > li {
+  position: relative;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: block;
+  padding: 8px 0;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a {
+  cursor: pointer;
+  padding-right: 16px;
+  position: relative;
+}
+
+.dropdown > a::after {
+  content: "▼";
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  padding: 12px 20px;
+  color: #666;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #f8f9fa;
+  color: #1a1a1a;
+}
+
+/* Sales Letter Content */
+.wrap {
+  max-width: 820px;
+  margin: 100px auto 64px;
+  padding: 48px;
+  background: #fffdf8;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.pre {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  font-size: 12px;
+  margin: 0 0 12px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+}
+
+.h1 {
+  font-size: clamp(32px, 5vw, 40px);
+  line-height: 1.1;
+  margin: 0 0 16px;
+  text-align: center;
+  color: #0f172a;
+}
+
+.sub {
+  font-size: clamp(18px, 3vw, 20px);
+  line-height: 1.4;
+  color: #475569;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.rule {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 32px 0;
+}
+
+.johnson {
+  background: #fef3c7;
+  border: 2px solid #fbbf24;
+  padding: 24px;
+  border-radius: 8px;
+  margin: 24px 0;
+}
+
+.johnson b {
+  color: #92400e;
+  font-weight: 700;
+}
+
+.lead {
+  font-size: clamp(17px, 2.5vw, 18px);
+  line-height: 1.7;
+  margin: 24px 0;
+}
+
+.stamp {
+  font-weight: bold;
+  color: #b91c1c;
+}
+
+h2 {
+  font-size: clamp(20px, 3.5vw, 24px);
+  margin: 32px 0 16px;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 20px 0 12px;
+  color: #475569;
+  font-weight: 600;
+}
+
+p {
+  margin: 16px 0;
+  line-height: 1.7;
+}
+
+ul {
+  margin: 16px 0 24px 24px;
+  line-height: 1.7;
+}
+
+li {
+  margin: 10px 0;
+}
+
+.box {
+  border: 2px solid #e5e7eb;
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  margin: 24px 0;
+}
+
+.kpi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.kpi b {
+  display: inline-block;
+  background: #1e293b;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.quote {
+  border-left: 4px solid #b91c1c;
+  padding-left: 20px;
+  background: #fff;
+  padding: 20px 20px 20px 24px;
+  border-radius: 6px;
+  font-style: italic;
+  margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cta {
+  display: inline-block;
+  background: #b91c1c;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 8px;
+  transition: transform 0.2s, background 0.2s;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.cta:hover {
+  background: #991b1b;
+  transform: translateY(-2px);
+}
+
+.ps {
+  font-size: 16px;
+  color: #475569;
+  margin: 24px 0;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background: #0a1929;
+  color: white;
+  padding: 60px 40px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 24px;
+  }
+  
+  .nav-links {
+    gap: 16px;
+  }
+  
+  .wrap {
+    margin: 90px 16px 40px;
+    padding: 24px;
+  }
+  
+  .kpi {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">InnovateForGood</a>
+  <ul class="nav-links">
+    <li class="dropdown">
+      <a>Services</a>
+      <div class="dropdown-menu">
+        <a href="dental.html">Dental Practices</a>
+        <a href="artists.html">Artists & Creators</a>
+        <a href="hvac.html">HVAC Contractors</a>
+      </div>
+    </li>
+    <li><a href="pricing.html">Investment</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a>Resources</a>
+      <div class="dropdown-menu">
+        <a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a>
+        <a href="microsites-deck.html">System Overview</a>
+        <a href="evidence-brief.html">Industry Evidence</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- Sales Letter Content -->
+<div class="wrap">
+  <div class="pre">Special Report • Evidence Brief</div>
+  <h1 class="h1">The Evidence Behind Microsites + AI Intake</h1>
+  <div class="sub">Why speed, structure, and signal-driven iteration produce measurable gains this quarter</div>
+  <div class="rule"></div>
+
+  <div class="johnson">
+    <b>What the numbers say:</b>
+    <ul>
+      <li>The first responder wins the majority of cases; rapid follow-up within minutes radically increases conversion odds.</li>
+      <li>Even brand-new pilots show meaningful signals in week one (visibility, device gaps, quick technical fixes) you can act on immediately.</li>
+      <li>Our delivery model is built for measurable performance: sub-2s mobile loads, 5-field forms, and clear conversion targets from day one.</li>
+    </ul>
+  </div>
+
+  <p class="lead"><span class="stamp">Dear Decision-Maker,</span> if you've ever felt your marketing was "working hard but not working smart," the evidence you're about to see will clarify why—and what to do next.</p>
+
+  <h2>Hard Evidence: Why Speed-to-Lead Is Your Weapon</h2>
+  <div class="box">
+    <ul>
+      <li><b>First responder advantage:</b> When you respond first, you capture the bulk of opportunities in competitive, high-intent markets.</li>
+      <li><b>Minutes matter:</b> Responding within ~5 minutes dramatically lifts conversion odds; delays into the half-hour/hour range erase intent and depress outcomes.</li>
+      <li><b>The AI difference:</b> Always-on outreach plus structured reminders increases captured appointments versus the "call tomorrow" approach.</li>
+    </ul>
+    <div class="kpi">
+      <b>"5-minute window" principle</b>
+      <b>First responder wins the lion's share</b>
+    </div>
+  </div>
+
+  <h2>Design That Delivers: What We Ship (and Why It Works)</h2>
+  <p>Our microsites are engineered to convert intent, not just attract clicks.</p>
+  <ul>
+    <li><b>Speed as a feature:</b> Sub-2-second mobile loads, Lighthouse 90+ targets—because faster pages keep people engaged and lift conversions.</li>
+    <li><b>Frictionless capture:</b> 5-field forms, sticky "Tap to Call," and consented follow-up that aligns ops with the on-page promise.</li>
+    <li><b>Local SEO signals:</b> City/ZIP copy, LocalBusiness + FAQ schema, clean canonicals to support richer snippets and stable rankings.</li>
+    <li><b>Governed iteration:</b> JSON content + CI/CD so copy, offers, and FAQs improve in minutes—not months.</li>
+  </ul>
+
+  <h2>Week-One Proof: What a Fresh Pilot Reveals (HVAC Example)</h2>
+  <p>You don't need quarters of history to learn. In the first 7–14 days, your data already points to specific, high-leverage fixes.</p>
+  <div class="box">
+    <h3>Signals observed (brand-new pilot):</h3>
+    <ul>
+      <li><b>Visibility exists:</b> 39 impressions recorded with average position ~32 across variants—small but actionable confirmation you're eligible and showing.</li>
+      <li><b>Device gap exposed:</b> Desktop avg. position ~12.5 vs mobile ~43—prioritize mobile UX/speed to close the gap where local demand actually lives.</li>
+      <li><b>Technical duplication:</b> Both http and https versions indexed for the same city page—consolidate under HTTPS + canonical to stabilize performance.</li>
+      <li><b>Near-term upside:</b> A high-intent query touched page-one range (positions ~10.5 → 9 on different days). Rewrite title/meta and on-page sections to win that click first.</li>
+    </ul>
+    <div class="kpi">
+      <b>Impressions: 39 (U.S.)</b>
+      <b>Mobile pos: 43.04 vs Desktop 12.5</b>
+      <b>HTTP/HTTPS split detected</b>
+      <b>Query near page-one: pos ~9–10.5</b>
+    </div>
+  </div>
+
+  <h2>What Happens When You Pair Speed With Structure</h2>
+  <ul>
+    <li><b>You earn the click:</b> Device-specific titles/meta mapped to the exact high-intent phrases already surfacing in Search Console.</li>
+    <li><b>You capture the lead:</b> Mobile-first UX and immediate, helpful follow-up within the critical window.</li>
+    <li><b>You keep the appointment:</b> Confirmations and reminders reduce no-shows, so calendars reflect real revenue, not wishful thinking.</li>
+  </ul>
+
+  <h2>Economics You Can Defend</h2>
+  <div class="box">
+    <ul>
+      <li><b>Conversion targets:</b> Programs manage to ≥3% form conversion for local services (traffic-dependent) as an explicit success metric from day one.</li>
+      <li><b>Cost → Return:</b> Example cost structure and ROI modeling show meaningful net lift when you capture even a fraction of lost intent.</li>
+    </ul>
+    <div class="kpi">
+      <b>Form CVR target: ≥3%</b>
+      <b>Modeled ROI and payback available</b>
+    </div>
+  </div>
+
+  <h2>Field Notes: Why "Phone-Only" Leaves Money on the Table</h2>
+  <p>When the only option is "call us," intent decays. People compare multiple providers and default to whoever makes the next step obvious.</p>
+  <ul>
+    <li><b>Faster first touch wins:</b> A responsive, instrumented request-a-consult path + instant callback protects the 5-minute window.</li>
+    <li><b>Structured FAQs matter:</b> Price/financing and timeline answers reduce friction and raise show rates (and trust).</li>
+  </ul>
+
+  <h2>Proof Stack (What You'll See on the Dashboard)</h2>
+  <ul>
+    <li><b>Acquisition:</b> Impressions, position by device, and CTR for top queries (pinpoint titles/meta to fix next).</li>
+    <li><b>Behavior:</b> phone_click, form_submit, and completion rates tied to mobile UX changes.</li>
+    <li><b>Operations:</b> Time-to-first-response and coverage against your promised SLA (the "trust gap" tracker).</li>
+  </ul>
+
+  <h2>What This Means for You (Immediate, Low-Risk Next Step)</h2>
+  <div class="quote">"Launch one city. In week one, verify signals and patch the biggest leak (mobile snippet, HTTPS canonical, or sticky call). In week two, capture the gains with speed-to-lead. Then scale what worked."</div>
+
+  <p class="center" style="margin-top:24px">
+    <a class="cta" href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Book the 20-Minute Evidence Walkthrough</a>
+  </p>
+  <p class="center muted">We'll review your Search Console signals, your mobile UX, and your speed-to-lead plan—then show the 30-day metrics we'll manage to.</p>
+
+  <div class="rule"></div>
+  <h2>Frequently Asked (Evidence-First) Questions</h2>
+  <h3>"Will this help without months of data?"</h3>
+  <p>Yes. New pilots produce actionable signals immediately (visibility, device gaps, technical duplication, query angles). We use those to ship the first 2–3 high-impact fixes within 14 days.</p>
+
+  <h3>"Why not just fix my main site?"</h3>
+  <p>Microsites are purpose-built for one outcome (lead or call) with speed, schema, and governance that's hard to bolt onto a busy CMS. They also let you test copy and offers safely, then roll winners back to the main site.</p>
+
+  <h3>"What metrics will you own?"</h3>
+  <p>We commit to page performance, conversion structure, and response coverage: sub-2s mobile loads, 5-field forms, and a speed-to-lead SLA aligned to the 5-minute window.</p>
+
+  <div class="rule"></div>
+  <p class="ps"><b>P.S.</b> The evidence is clear: the first helpful response wins. Pair that truth with fast pages and focused UX, and you turn more clicks into revenue—starting this month.</p>
+
+  <div id="contact" class="box" style="margin-top:24px">
+    <h3 style="margin-top:0">Next Steps</h3>
+    <ul>
+      <li>Share your Search Console access (read-only) for one pilot city.</li>
+      <li>We'll deliver a 14-day plan with the first 3 fixes and the metrics to watch.</li>
+      <li>You'll see the before/after right in your dashboard—no black box.</li>
+    </ul>
+    <p class="center"><a class="cta" href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Schedule the Evidence Walkthrough</a></p>
+  </div>
+
+  <p class="muted" style="margin-top:24px">Sources: live pilot search data (impressions/positions/devices/pages/queries) and program specifications; speed-to-lead and first-responder findings as cited.</p>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>InnovateForGood</h4>
+      <p style="color: #aaa; font-size: 14px; line-height: 1.6;">
+        Marketing that transforms practices—and communities—for the better.
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="dental.html">Dental</a></li>
+        <li><a href="artists.html">Artists</a></li>
+        <li><a href="hvac.html">HVAC</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="transformation_deck-2.html">Transformation Deck</a></li>
+        <li><a href="microsites-deck.html">Microsites Deck</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="evidence-brief.html">Evidence Brief</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    © 2024 Innovate for Good. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>

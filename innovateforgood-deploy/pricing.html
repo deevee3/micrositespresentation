@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing | InnovateForGood</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links > li {
+  position: relative;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: block;
+  padding: 8px 0;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a {
+  cursor: pointer;
+  padding-right: 16px;
+  position: relative;
+}
+
+.dropdown > a::after {
+  content: "▼";
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  padding: 12px 20px;
+  color: #666;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #f8f9fa;
+  color: #1a1a1a;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 40px 80px;
+  background: linear-gradient(180deg, #fef5ec 0%, #fce7d4 50%, #fad5bc 100%);
+  color: #1a1a1a;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pricing Section */
+.pricing-section {
+  padding: 100px 40px;
+  background: #ffffff;
+}
+
+.pricing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.pricing-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 48px 32px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: #ff6b35;
+}
+
+.pricing-card.featured {
+  border-color: #ff6b35;
+  border-width: 3px;
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.15);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pricing-card h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+.pricing-card .price {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #ff6b35;
+}
+
+.pricing-card .price-small {
+  font-size: 32px;
+}
+
+.pricing-card .period {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.pricing-features li {
+  padding: 14px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 15px;
+  color: #444;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pricing-features li:last-child {
+  border-bottom: none;
+}
+
+.pricing-features li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: 800;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.pricing-cta {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #ff6b35;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: transform 0.2s, background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.pricing-cta:hover {
+  transform: scale(1.05);
+  background: #ff5722;
+}
+
+.pricing-cta.secondary {
+  background: white;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
+}
+
+.pricing-cta.secondary:hover {
+  background: #f8f9fa;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 100px 40px;
+  background: #f8f9fa;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 42px);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #1a1a1a;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+  padding: 24px 32px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.faq-question:hover {
+  background: #f8f9fa;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 32px;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 0 32px 24px 32px;
+}
+
+.faq-icon {
+  transition: transform 0.3s;
+  font-size: 20px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Footer */
+footer {
+  background: #0a1929;
+  color: white;
+  padding: 80px 40px 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 24px;
+  }
+  
+  .nav-links {
+    gap: 16px;
+  }
+  
+  .pricing-section {
+    padding: 80px 24px;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero {
+    padding: 120px 24px 60px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">InnovateForGood</a>
+  <ul class="nav-links">
+    <li class="dropdown">
+      <a>Services</a>
+      <div class="dropdown-menu">
+        <a href="dental.html">Dental Practices</a>
+        <a href="artists.html">Artists & Creators</a>
+        <a href="hvac.html">HVAC Contractors</a>
+      </div>
+    </li>
+    <li><a href="pricing.html">Investment</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a>Resources</a>
+      <div class="dropdown-menu">
+        <a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a>
+        <a href="microsites-deck.html">System Overview</a>
+        <a href="evidence-brief.html">Industry Evidence</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Start with a free strategy call, then choose the plan that fits your growth goals. No hidden fees, no long-term contracts.</p>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section">
+  <div class="pricing-container">
+    <div class="pricing-grid">
+      
+      <!-- Strategy Call -->
+      <div class="pricing-card">
+        <h3>Strategy Call</h3>
+        <div class="price">Free</div>
+        <div class="period">30 minutes</div>
+        <ul class="pricing-features">
+          <li>Practice assessment</li>
+          <li>Revenue leak analysis</li>
+          <li>Custom growth roadmap</li>
+          <li>No commitment required</li>
+          <li>Market viability check</li>
+        </ul>
+        <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="pricing-cta">Book Your Call</a>
+      </div>
+      
+      <!-- Complete AI System -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <h3>Complete Marketing System</h3>
+        <div class="price price-small">$9,997.97</div>
+        <div class="period">One-time setup fee</div>
+        <ul class="pricing-features">
+          <li>Full AI implementation</li>
+          <li>1 full year of tech support</li>
+          <li>No monthly fees ever</li>
+          <li>AI automation setup</li>
+          <li>Multi-city campaigns</li>
+          <li>Performance guarantee</li>
+          <li>Real-time analytics dashboard</li>
+        </ul>
+        <a href="https://www.paypal.com/ncp/payment/XWDRCKVMXC9SL" target="_blank" class="pricing-cta">Get Started</a>
+      </div>
+      
+      <!-- Enterprise -->
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <div class="period">For multi-location practices</div>
+        <ul class="pricing-features">
+          <li>Everything in AI System</li>
+          <li>Multi-location rollout</li>
+          <li>White-glove support</li>
+          <li>Dedicated success manager</li>
+          <li>Priority implementation</li>
+          <li>Custom integrations</li>
+          <li>Advanced reporting</li>
+        </ul>
+        <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="pricing-cta secondary">Contact Us</a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="faq-container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        What's included in the one-time fee?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        The $9,997.97 includes full AI system implementation, multi-city campaign setup, analytics dashboard, performance tracking, and 1 full year of technical support. No monthly fees ever.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        Are there any ongoing costs?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        After the one-time setup fee, the only ongoing costs are your advertising spend (you control this) and any optional add-on services you choose. The core AI system requires no monthly fees.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        What if I need help after the first year?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        After your first year of included support, you can purchase extended support packages or pay as you go for specific updates and optimizations. Most clients find the system runs smoothly with minimal intervention.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        Do you offer payment plans?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes! We offer flexible payment plans for qualified businesses. Discuss options during your strategy call.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        What's your refund policy?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        We offer a performance guarantee: if the system doesn't generate 8 qualified appointments per city in Month 2, we add cities at no extra cost until it does. We're invested in your success.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        How is Enterprise pricing determined?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Enterprise pricing is customized based on the number of locations, integration complexity, and support requirements. Schedule a call to discuss your specific needs and receive a custom quote.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>InnovateForGood</h4>
+      <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">
+        Marketing systems that transform businesses—and communities—for the better.
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="dental.html">Dental Practices</a></li>
+        <li><a href="artists.html">Artists & Creators</a></li>
+        <li><a href="hvac.html">HVAC Contractors</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a></li>
+        <li><a href="microsites-deck.html">System Overview</a></li>
+        <li><a href="evidence-brief.html">Industry Evidence</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="pricing.html">Investment & Returns</a></li>
+        <li><a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-trust">
+    <div class="trust-signal">
+      <span>🔒</span>
+      <span>Secure Payments</span>
+    </div>
+    <div class="trust-signal">
+      <span>⚡</span>
+      <span>Fast Implementation</span>
+    </div>
+    <div class="trust-signal">
+      <span>📊</span>
+      <span>Performance Guaranteed</span>
+    </div>
+    <div class="trust-signal">
+      <span>🎯</span>
+      <span>Research-Backed</span>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    © 2025 InnovateForGood. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const item = question.parentElement;
+    const wasActive = item.classList.contains('active');
+    
+    // Close all items
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    
+    // Open clicked item if it wasn't active
+    if (!wasActive) {
+      item.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

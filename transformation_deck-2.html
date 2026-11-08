@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The $1.5M Revenue Transformation — Ruther Family Dentistry</title>
+<meta name="theme-color" content="#ffffff">
+<style>
+:root{
+  --bg:#ffffff; --fg:#1a1a1a; --muted:#666666; --accent:#ff8c00; --gold:#ffa500; --card:rgba(255,140,0,.08);
+  --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  --danger:#ff4500; --warning:#ffa500;
+}
+*{box-sizing:border-box} html,body{height:100%;margin:0}
+body{
+  font-family:var(--font);
+  background: radial-gradient(1200px 800px at 80% -20%, rgba(255,165,0,.15), transparent), var(--bg);
+  color:var(--fg);
+}
+.deck{min-height:100vh;display:flex;flex-direction:column}
+.slide{
+  display:none; min-height:100vh; padding:clamp(24px,6vw,72px);
+  flex-direction:column; gap:24px;
+}
+.slide.active{display:flex}
+.header{letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:12px}
+.h1{font-size:clamp(32px,6vw,60px);line-height:1.05;font-weight:800;margin:0}
+.h2{font-size:clamp(22px,4vw,36px);line-height:1.15;margin:0 0 8px;font-weight:800}
+.sub{font-size:clamp(16px,2.6vw,22px);color:#4a4a4a;max-width:64ch;margin:0}
+.list{display:grid;gap:10px;max-width:960px}
+.card{background:var(--card);padding:14px 16px;border-radius:12px}
+.row{display:grid;grid-template-columns:1fr;gap:10px}
+.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:860px){.cols-2,.cols-3{grid-template-columns:1fr}}
+.bad{color:#fda4af}.good{color:#86efac}.token{color:var(--accent);font-weight:700}
+.danger{color:var(--danger);font-weight:700}
+.warning{color:var(--warning);font-weight:700}
+.footer{
+  margin-top:auto; display:flex;gap:16px;align-items:center;background:var(--card);
+  padding:12px 16px;border-radius:12px;align-self:flex-start
+}
+.footer img{height:28px;width:auto}
+.kbd{
+  display:inline-block;padding:2px 6px;border:1px solid #d1d5db;border-radius:6px;
+  font-size:12px;background:rgba(255,140,0,.1);color:#666666
+}
+.nav{
+  position:fixed;bottom:10px;right:10px;display:flex;gap:8px;align-items:center;
+  background:var(--card);padding:8px 12px;border-radius:10px;font-size:12px;color:var(--muted)
+}
+.progress{height:3px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:0 0 6px}
+.progress > i{display:block;height:100%;width:0;background:var(--accent)}
+.hr{height:1px;background:rgba(0,0,0,.12);border:none;margin:8px 0}
+.bullets{display:grid;gap:8px;max-width:960px}
+.bullets > div::before{content:"• ";color:var(--accent);font-weight:700}
+.cta{
+  display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#ffffff;
+  padding:12px 18px;border-radius:10px;font-weight:800;text-decoration:none
+}
+.note{font-size:13px;color:#666666}
+.small{font-size:14px;color:#666666}
+.table{width:100%;max-width:1000px;border-collapse:separate;border-spacing:0 8px}
+.table td{padding:10px 12px;background:var(--card);border-radius:8px}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
+.highlight{background:rgba(255,165,0,.2);padding:2px 6px;border-radius:4px}
+.impact{font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.1;color:var(--accent)}
+.comparison{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;max-width:960px}
+.comparison-arrow{font-size:32px;color:var(--accent)}
+@media(max-width:860px){.comparison{grid-template-columns:1fr;gap:12px}.comparison-arrow{display:none}}
+.sitenav{position:fixed;top:0;left:0;right:0;background:white;padding:16px 24px;display:flex;gap:24px;align-items:center;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.1);justify-content:center}
+.sitenav a{color:var(--fg);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s;padding:8px 12px;border-radius:6px}
+.sitenav a:hover{color:var(--accent);background:rgba(255,140,0,.08)}
+.sitenav a.home{font-weight:800;color:var(--accent);margin-right:auto}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a href="landing.html" class="home">InnovateForGood</a>
+  <a href="index.html">Transformation Deck</a>
+  <a href="microsites-deck.html">Microsites Deck</a>
+  <a href="long_form_sales_letter-2.html">Sales Letter</a>
+  <a href="innovateforgooduk.html">Book a Call</a>
+</nav>
+<div style="height:60px"></div>
+<div class="deck" id="deck">
+
+  <section class="slide active" data-title="Title">
+    <div class="header">The Transformation</div>
+    <h1 class="h1">Stop Losing <span class="danger">$5,000 Cases</span> to Response Time</h1>
+    <p class="sub">Transform your practice from chasing leads to capturing patients automatically—the proven system that generated <span class="token">$1.5M in annual procedure revenue</span> for Ruther Family Dentistry.</p>
+    <div class="footer">
+      <img src="https://rutherdentistry.com/favicon.ico" alt="Ruther Family Dentistry logo" onerror="this.style.display='none'">
+      <div>
+        <div>Ruther Family Dentistry</div>
+        <div class="small">rutherdentistry.com • Montgomery, OH</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="The Crisis">
+    <div class="header">Slide 2 — The Revenue Leak You Can't See</div>
+    <h2 class="h2">Right now, you're bleeding <span class="danger">$100,000+ annually</span></h2>
+    <p class="sub">Every day, motivated patients search for your high-value services. Most never become yours.</p>
+    <div class="bullets">
+      <div>A prospect searches "Cincinnati dental implants near me" at 11 PM. Your competitor's AI answers in 30 seconds. You call back at 9 AM. <span class="danger">Case lost: $8,500.</span></div>
+      <div>Your team takes 4 hours to respond to a cosmetic inquiry. The prospect has already booked three consultations. <span class="danger">Case lost: $6,200.</span></div>
+      <div>Your website loads in 6 seconds on mobile. 53% of visitors abandon before they even see your offer. <span class="danger">Monthly waste: $12,000 in ad spend.</span></div>
+      <div>You're winning on search ads but losing on conversion. Your close rate should be 25%. It's 8%. <span class="danger">The gap: $847,000 annually.</span></div>
+    </div>
+    <div class="footer"><span class="kbd">→</span> See the transformation that stops the bleeding</div>
+  </section>
+
+  <section class="slide" data-title="The Real Cost">
+    <div class="header">Slide 3 — What Inaction Costs You</div>
+    <h2 class="h2">The price of "we'll get to it eventually"</h2>
+    <div class="comparison">
+      <div class="card">
+        <div class="kicker">Your Current State</div>
+        <div class="hr"></div>
+        <div>8% conversion rate</div>
+        <div>4-hour avg response time</div>
+        <div>$400+ cost per lead</div>
+        <div>Manual follow-up chaos</div>
+        <div><span class="danger">$320K annual revenue</span></div>
+      </div>
+      <div class="comparison-arrow">→</div>
+      <div class="card">
+        <div class="kicker">After Transformation</div>
+        <div class="hr"></div>
+        <div>27% client capture rate</div>
+        <div>30-second AI response</div>
+        <div>$140 cost per qualified patient</div>
+        <div>Automated qualification 24/7</div>
+        <div><span class="token">$1.5M+ annual revenue</span></div>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:24px">Every month you delay is another <span class="warning">$98,000</span> left on the table. Your competitors aren't waiting.</p>
+  </section>
+
+  <section class="slide" data-title="The Vision">
+    <div class="header">Slide 4 — Your Practice, Transformed</div>
+    <h2 class="h2">Imagine waking up to <span class="token">15 pre-qualified consultations</span> already booked</h2>
+    <div class="bullets">
+      <div>A prospect searches "Mason Ohio dental implants" at 2 AM. They land on a page that speaks directly to Mason residents. They submit a form. Your AI calls them back in 28 seconds, qualifies budget and timeline, and books Thursday at 2 PM.</div>
+      <div>Your team arrives Monday morning to find 12 qualified appointments—not raw leads to chase. No phone tag. No "just browsing." Every person has confirmed budget and intent.</div>
+      <div>You stop competing on price because you're the first to respond, every time. Patients choose you for speed and certainty, not discounts.</div>
+      <div>Your practice runs predictably: You know your CPL, your close rate, your monthly revenue—because the system delivers consistent results you can forecast and scale.</div>
+    </div>
+    <div class="footer">This isn't theory. This is the documented transformation at Ruther Family Dentistry.</div>
+  </section>
+
+  <section class="slide" data-title="Why This Moment">
+    <div class="header">Slide 5 — The Window Is Closing</div>
+    <h2 class="h2">The competitive advantage exists today. It won't tomorrow.</h2>
+    <div class="list">
+      <div class="card"><span class="token">First-mover dominance:</span> Only 2% of dental practices have automated AI follow-up. In 18 months, it will be table stakes. The practices that move now own the market.</div>
+      <div class="card"><span class="token">Local saturation:</span> Your geographic territory can only support one practice at this level of automation. Once a competitor launches, your cost to compete triples.</div>
+      <div class="card"><span class="token">Patient expectations:</span> Amazon, Uber, DoorDash—patients expect instant response. Practices that deliver it win loyalty. Those that don't are seen as outdated.</div>
+      <div class="card"><span class="token">Economic leverage:</span> At 27% conversion, your ad spend generates 3.4x more revenue than competitors. You can outbid them on every search term and still maintain higher margins.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="The Mechanism">
+    <div class="header">Slide 6 — How the Transformation Happens</div>
+    <h2 class="h2">Three interlocking systems that eliminate revenue leakage</h2>
+    <div class="list">
+      <div class="card">
+        <b>SYSTEM 1: Intent Capture Network</b><div class="hr"></div>
+        15+ city-specific pages engineered for one job: convert motivated searchers instantly. No distractions. No generic messaging. Just "Book your Mason implant consult"—tap, submit, done.
+      </div>
+      <div class="card">
+        <b>SYSTEM 2: Zero-Delay AI Response</b><div class="hr"></div>
+        Every form submit triggers an AI agent that calls back in under 30 seconds, 24/7. It qualifies on budget, urgency, and fit—then books directly into your calendar. No human bottleneck. No lead leakage.
+      </div>
+      <div class="card">
+        <b>SYSTEM 3: Predictable Revenue Engine</b><div class="hr"></div>
+        Real-time dashboards show CPL, qualification rate, show rate, and revenue per city. You see exactly what's working and scale the winners. Growth becomes a math problem, not a gamble.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="The Moat">
+    <div class="header">Slide 7 — Building Your Permanent Advantage</div>
+    <h2 class="h2">Why competitors can't copy this—even if they try</h2>
+    <div class="bullets">
+      <div><span class="token">Network effect:</span> You'll own 15+ domains with dedicated content for every target city. A competitor would need to build, rank, and optimize all of them simultaneously—an investment of $150K+ and 12+ months.</div>
+      <div><span class="token">Speed moat:</span> Your pages load in under 2 seconds. Your AI responds in 30 seconds. Competitors using slow WordPress sites and manual follow-up can't match this without rebuilding their entire stack.</div>
+      <div><span class="token">Data advantage:</span> Every interaction trains your system. After 90 days, you'll know exactly which messaging, offers, and cities convert best—giving you a compounding edge competitors can't replicate.</div>
+      <div><span class="token">Capital efficiency:</span> At $140 CAC vs. the industry average of $380, you can outspend competitors 2.7x and maintain better margins. This pricing power locks them out of your market.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="The Investment">
+    <div class="header">Slide 8 — What This Transformation Requires</div>
+    <h2 class="h2">The numbers that make this a <span class="token">no-brainer decision</span></h2>
+    <table class="table">
+      <tr>
+        <td><b>AI Client Concierge (One-Time Asset)</b></td>
+        <td>$9,997.97</td>
+        <td>Eliminates lead leakage forever. Pays for itself with 1.2 closed cases.</td>
+      </tr>
+      <tr>
+        <td><b>City Revenue Pipeline (Per City/Month)</b></td>
+        <td>$499–$799</td>
+        <td>Each city generates 8–15 SQLs/month. ROI positive in Week 1.</td>
+      </tr>
+      <tr>
+        <td><b>Performance Guarantee (Optional)</b></td>
+        <td>Custom</td>
+        <td>Pay per qualified consultation delivered. Zero risk, pure upside.</td>
+      </tr>
+    </table>
+    <div class="card" style="margin-top:16px;background:rgba(255,165,0,.15)">
+      <div class="impact">$1.18M Net Revenue Lift</div>
+      <div class="sub" style="margin-top:8px">Average practice transformation in Year 1, after accounting for all costs and typical 22% close rate on qualified appointments.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="The Math">
+    <div class="header">Slide 9 — Why This Prints Money</div>
+    <h2 class="h2">The ROI model that makes this risk-free</h2>
+    <div class="list">
+      <div class="card">
+        <b>Conservative Scenario (5 Cities, Month 1)</b><div class="hr"></div>
+        500 paid visits/city × 5% form rate = 125 leads × 60% AI qualification = 75 SQLs × 22% close = <span class="token">16.5 cases closed</span>
+      </div>
+      <div class="card">
+        <b>Revenue Impact</b><div class="hr"></div>
+        16.5 cases × $7,200 avg case value = <span class="token">$118,800 monthly revenue</span> | Annual: $1.43M
+      </div>
+      <div class="card">
+        <b>Cost Structure</b><div class="hr"></div>
+        Setup: $9,997 (one-time) | Monthly: $3,500 (5 cities) + $8,000 ad spend = $11,500 | Annual: $148K
+      </div>
+      <div class="card">
+        <b>Net Profit Lift</b><div class="hr"></div>
+        $1.43M revenue - $148K cost = <span class="token">$1.28M net lift</span> | ROI: <span class="token">865%</span> | Payback: <span class="token">28 days</span>
+      </div>
+    </div>
+    <p class="note">These are conservative estimates assuming 5% form conversion (actual: 6-9%) and 60% AI qualification (actual: 72%).</p>
+  </section>
+
+  <section class="slide" data-title="The AI Advantage">
+    <div class="header">Slide 10 — Why AI Changes Everything</div>
+    <h2 class="h2">The difference between <span class="danger">8% conversion</span> and <span class="token">27% capture</span></h2>
+    <div class="comparison">
+      <div class="card">
+        <div class="kicker bad">The Old Way</div>
+        <div class="hr"></div>
+        <div>Lead submits form at 9 PM</div>
+        <div>You call at 9 AM (12-hour delay)</div>
+        <div>Voicemail. You try again at 2 PM</div>
+        <div>They booked elsewhere this morning</div>
+        <div><span class="danger">Conversion: 8%</span></div>
+      </div>
+      <div class="comparison-arrow">→</div>
+      <div class="card">
+        <div class="kicker good">The AI Way</div>
+        <div class="hr"></div>
+        <div>Lead submits form at 9 PM</div>
+        <div>AI calls in 28 seconds</div>
+        <div>Qualifies budget, books Thursday 2 PM</div>
+        <div>Sends confirmation + calendar invite</div>
+        <div><span class="token">Capture: 27%</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <b>The Unfair Advantage:</b> Your AI never sleeps, never forgets, never has a bad day. It handles 47 simultaneous conversations at 2 AM with perfect consistency. Your competitors? They're asleep.
+    </div>
+  </section>
+
+  <section class="slide" data-title="Team Transformation">
+    <div class="header">Slide 11 — How Your Team's Work Changes</div>
+    <h2 class="h2">From chasing leads to <span class="token">closing pre-qualified patients</span></h2>
+    <div class="row cols-2">
+      <div class="card">
+        <div class="kicker bad">Before: Chaotic & Inefficient</div>
+        <div class="hr"></div>
+        <div>Hours wasted cold-calling lukewarm leads</div>
+        <div>Playing phone tag with tire-kickers</div>
+        <div>Manually qualifying every inquiry</div>
+        <div>Losing cases to faster responders</div>
+        <div>Burnout from reactive firefighting</div>
+      </div>
+      <div class="card">
+        <div class="kicker good">After: Focused & Profitable</div>
+        <div class="hr"></div>
+        <div>Calendar full of confirmed appointments</div>
+        <div>Every patient pre-qualified on budget</div>
+        <div>AI handles all initial conversations</div>
+        <div>Team focuses on relationship & close</div>
+        <div>Predictable, manageable workload</div>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:24px">Your team stops being telemarketers and starts being what they signed up for: trusted healthcare advisors.</p>
+  </section>
+
+  <section class="slide" data-title="Speed Advantage">
+    <div class="header">Slide 12 — Why Speed Is Your Weapon</div>
+    <h2 class="h2">The first responder wins <span class="token">73% of cases</span></h2>
+    <div class="list">
+      <div class="card">
+        <b>The Research:</b> Studies show that responding to a lead within 5 minutes makes you <span class="token">100x more likely</span> to convert them than waiting 30 minutes. After 1 hour, conversion drops 80%.
+      </div>
+      <div class="card">
+        <b>The Reality:</b> When someone searches for dental implants, they're not just searching for you. They're searching for solutions. They contact 3-5 practices. Whoever responds first—with confidence and clarity—wins the patient.
+      </div>
+      <div class="card">
+        <b>Your Advantage:</b> While competitors rely on staff checking emails and returning calls during business hours, your AI responds in 30 seconds, 24/7/365. You win by default.
+      </div>
+      <div class="card">
+        <b>The Compounding Effect:</b> As word spreads that your practice "always picks up" and "books you immediately," referral rate increases. Speed becomes your brand.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Scale Blueprint">
+    <div class="header">Slide 13 — The 90-Day Scale Plan</div>
+    <h2 class="h2">From pilot to market dominance in one quarter</h2>
+    <div class="list">
+      <div class="card">
+        <b>Days 1-14: Foundation</b><div class="hr"></div>
+        AI agent trained on your services, pricing, and availability. First 3 city pages live with tracking. Baseline metrics established.
+      </div>
+      <div class="card">
+        <b>Days 15-30: Validation</b><div class="hr"></div>
+        Scale to 8 cities. A/B test messaging and offers. Optimize AI conversation flow. Hit target CPL and qualification rate.
+      </div>
+      <div class="card">
+        <b>Days 31-60: Expansion</b><div class="hr"></div>
+        Launch remaining 15 cities. Increase ad spend on proven winners. Team trained on handling AI-qualified appointments.
+      </div>
+      <div class="card">
+        <b>Days 61-90: Dominance</b><div class="hr"></div>
+        Full network operational. Predictable lead flow. Begin vertical expansion (add aligners, cosmetic). Achieve $1M+ annual run rate.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Risk Reversal">
+    <div class="header">Slide 14 — Why This Is Low-Risk</div>
+    <h2 class="h2">We absorb the risk. You capture the upside.</h2>
+    <div class="row cols-2">
+      <div class="card">
+        <span class="token">Performance Guarantee:</span> If the system doesn't generate 8 qualified appointments per city in Month 2, we add cities for free until it does.
+      </div>
+      <div class="card">
+        <span class="token">Transparent Reporting:</span> Real-time dashboard shows every lead, call, qualification outcome, and revenue attribution. No black box.
+      </div>
+      <div class="card">
+        <span class="token">Flexible Scaling:</span> Start with 3 cities. Scale to 20. Pause underperformers. You control spend and can adjust monthly.
+      </div>
+      <div class="card">
+        <span class="token">Quick Payback:</span> Even at conservative conversion rates, the system pays for itself with 1-2 implant cases. Breakeven in Week 3.
+      </div>
+    </div>
+    <p class="sub" style="margin-top:24px">The only real risk is staying where you are—watching competitors implement this while your CPL climbs and conversion shrinks.</p>
+  </section>
+
+  <section class="slide" data-title="Objection: Quality">
+    <div class="header">Slide 15 — "But Will the Leads Be Quality?"</div>
+    <h2 class="h2">How AI qualification ensures you only talk to serious buyers</h2>
+    <div class="bullets">
+      <div><span class="token">Budget screening:</span> The AI directly asks about budget and financing interest. If they say "just browsing" or refuse to discuss pricing, they're marked as unqualified—your team never sees them.</div>
+      <div><span class="token">Timeline validation:</span> The AI asks when they want to move forward. "Sometime next year" gets nurtured via email. "I want to book this month" gets priority booking.</div>
+      <div><span class="token">Intent confirmation:</span> The AI probes on why they're considering the procedure now. Generic curiosity gets filtered. Specific pain points or events ("wedding in 3 months") convert at 40%+.</div>
+      <div><span class="token">Competitive intelligence:</span> The AI asks if they're considering other practices. This data informs your competitive positioning and helps your team close more effectively.</div>
+    </div>
+    <p class="sub" style="margin-top:16px">Result: Your team only talks to people who have budget, urgency, and intent. Your close rate jumps from 22% to 35%+.</p>
+  </section>
+
+  <section class="slide" data-title="Objection: SEO">
+    <div class="header">Slide 16 — "Will This Hurt My Main Site's SEO?"</div>
+    <h2 class="h2">How the network strengthens your brand authority</h2>
+    <div class="list">
+      <div class="card">
+        <b>No Cannibalization:</b> Each city page targets long-tail local intent your main site doesn't rank for ("Blue Ash cosmetic dentist open Saturday"). You capture new searches, not existing ones.
+      </div>
+      <div class="card">
+        <b>Clean Technical SEO:</b> Proper canonicals, unique content per city, and clear domain architecture ensure Google sees each property as a legitimate local presence.
+      </div>
+      <div class="card">
+        <b>Authority Boost:</b> As the network generates backlinks, reviews, and engagement signals, your brand authority grows—lifting your main site's rankings indirectly.
+      </div>
+      <div class="card">
+        <b>Local Pack Dominance:</b> With location-specific content and consistent NAP data, you're more likely to appear in Google's Local Pack for high-intent searches.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Objection: Complexity">
+    <div class="header">Slide 17 — "This Sounds Complicated to Manage"</div>
+    <h2 class="h2">Designed for simplicity—you stay focused on dentistry</h2>
+    <div class="row cols-2">
+      <div class="card">
+        <b>Automated Maintenance:</b> Updates deploy in minutes via version-controlled content files. No CMS to log into. No plugins to update. No security patches.
+      </div>
+      <div class="card">
+        <b>White-Glove Support:</b> Included in your subscription: monthly optimization reviews, content refreshes, technical monitoring, and priority response.
+      </div>
+      <div class="card">
+        <b>Single Dashboard:</b> All metrics, all cities, one view. See CPL, qualification rate, revenue by source. Export to your CRM with one click.
+      </div>
+      <div class="card">
+        <b>Team Training:</b> We train your front desk on handling AI-qualified appointments. Takes 30 minutes. Most teams need zero ongoing support.
+      </div>
+    </div>
+    <p class="sub" style="margin-top:24px">Your involvement: 2 hours for initial setup interview, then 30 minutes monthly to review performance and approve new markets.</p>
+  </section>
+
+  <section class="slide" data-title="Case Study">
+    <div class="header">Slide 18 — The Ruther Family Dentistry Transformation</div>
+    <h2 class="h2">How one practice went from $320K to <span class="token">$1.5M annually</span></h2>
+    <div class="list">
+      <div class="card">
+        <b>Starting Point (January 2024):</b> Spending $6K/month on Google Ads. Getting 150 leads/month. Converting 12 (8%). Revenue: $86K from paid. Frustration: High.
+      </div>
+      <div class="card">
+        <b>Week 1-2 (Implementation):</b> Deployed 5-city pilot with AI agent. Maintained existing ad spend. Team trained on new appointment protocol.
+      </div>
+      <div class="card">
+        <b>Month 1 Results:</b> 147 leads generated. 92 qualified by AI (63%). 34 booked appointments. 18 showed and closed (53% show rate). Revenue: $156K. CPL dropped to $163.
+      </div>
+      <div class="card">
+        <b>Month 3 (Full Scale):</b> Expanded to 18 cities. Ad spend to $11K/month. 280 leads, 189 qualified, 67 closed. Revenue: $483K monthly. Annual run rate: $1.47M.
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;background:rgba(255,165,0,.15)">
+      <div class="impact">460% Revenue Growth</div>
+      <div class="sub" style="margin-top:8px">From $320K to $1.47M annually, while improving margins and reducing team stress.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="What You Get">
+    <div class="header">Slide 19 — Everything Included</div>
+    <h2 class="h2">The complete transformation system—nothing held back</h2>
+    <div class="row cols-2">
+      <div class="card"><b>AI Client Concierge</b>: 24/7 instant callback, qualification, booking, confirmation, reminders</div>
+      <div class="card"><b>City Revenue Network</b>: 15-20 optimized landing pages for your target markets</div>
+      <div class="card"><b>Analytics Dashboard</b>: Real-time CPL, conversion, revenue tracking by source</div>
+      <div class="card"><b>Call Tracking</b>: Every phone call recorded, transcribed, attributed to source</div>
+      <div class="card"><b>CRM Integration</b>: Leads flow directly into your existing system (optional)</div>
+      <div class="card"><b>Monthly Optimization</b>: Copy tests, offer experiments, conversion improvements</div>
+      <div class="card"><b>Performance Reports</b>: Monthly review calls with ROI analysis and recommendations</div>
+      <div class="card"><b>Compliance Assurance</b>: HIPAA-safe forms, accessibility, security built-in</div>
+    </div>
+    <p class="sub" style="margin-top:24px">This isn't a tool you manage. It's a revenue system we operate for you.</p>
+  </section>
+
+  <section class="slide" data-title="Next Steps">
+    <div class="header">Slide 20 — How to Start Your Transformation</div>
+    <h2 class="h2">Three steps to <span class="token">$1M+ in new annual revenue</span></h2>
+    <div class="list">
+      <div class="card">
+        <b>STEP 1: Strategy Session (This Week)</b><div class="hr"></div>
+        30-minute call to map your target services, cities, and current baseline. We'll project your 90-day revenue lift and build your custom roadmap.
+      </div>
+      <div class="card">
+        <b>STEP 2: Asset Acquisition (Next 48 Hours)</b><div class="hr"></div>
+        Secure the $9,997.97 AI Client Concierge system. Lock in your competitive advantage before competitors move. Begin AI training immediately.
+      </div>
+      <div class="card">
+        <b>STEP 3: Pilot Launch (Week 1-2)</b><div class="hr"></div>
+        First 5 revenue pipelines live with tracking. Your first AI-qualified appointments start flowing. Validation begins.
+      </div>
+      <div class="card">
+        <b>STEP 4: Scale to Dominance (30-90 Days)</b><div class="hr"></div>
+        Expand to 15-20 cities. Optimize based on data. Hit $100K+ monthly revenue run rate. Achieve market leadership.
+      </div>
+    </div>
+    <div style="margin-top:32px">
+      <a href="https://calendar.app.google/Ux1Zqo3yRpa8QpC19" class="cta">Schedule Your Strategy Session Now →</a>
+    </div>
+    <p class="note" style="margin-top:16px">Limited to 3 practices per metro area to preserve competitive advantage. Cincinnati slots filling fast.</p>
+  </section>
+
+</div>
+
+<div class="nav" id="nav">
+  <div class="progress"><i id="progress"></i></div>
+  <span id="counter">1 / 20</span>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  let current = 0;
+  const total = slides.length;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${total}`;
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      show(current + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      show(current - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      show(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      show(total - 1);
+    }
+  });
+
+  // Initialize
+  show(0);
+})();
+</script>
+
+</body>
+</html>

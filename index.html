@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnovateForGood — Patient Growth Landing</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --accent: #ff8c00;
+      --card: rgba(255, 140, 0, 0.08);
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font);
+      background: radial-gradient(1200px 800px at 50% -20%, rgba(255, 165, 0, 0.15), transparent), var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px 72px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 920px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .logo {
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .tagline {
+      font-size: clamp(18px, 3vw, 20px);
+      color: #4b5563;
+      line-height: 1.65;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin: 60px 0;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 18px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      padding: 22px 24px;
+      background: #fff;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(255, 140, 0, 0.12);
+      font-size: 16px;
+      color: #4b5563;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      padding: 30px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      color: #4b5563;
+    }
+
+    .step-card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .callout {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+      padding: 44px;
+      text-align: center;
+      color: #4b5563;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .trust-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+      font-size: 15px;
+    }
+
+    .cta-block {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(255, 140, 0, 0.18);
+      padding: 48px;
+      text-align: center;
+      color: #4b5563;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 28px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(255, 140, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 84px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 36px 18px 60px;
+      }
+
+      header {
+        margin-bottom: 48px;
+      }
+
+      .callout,
+      .cta-block {
+        padding: 32px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="label">For dental and healthcare practices</div>
+      <div class="logo">More high-value cases. More impact. Less chaos.</div>
+      <p class="tagline">InnovateForGood helps you turn patient intent into booked treatment and predictable revenue—so your team can focus on care, not marketing.</p>
+    </header>
+
+    <section aria-labelledby="what-you-get">
+      <h2 id="what-you-get">What You Get</h2>
+      <div class="feature-grid">
+        <div class="feature-card">Consistent growth in high-value case starts</div>
+        <div class="feature-card">Faster follow-up, fewer lost opportunities</div>
+        <div class="feature-card">Higher case acceptance and better patient experience</div>
+        <div class="feature-card">Revenue you can forecast, not hope for</div>
+        <div class="feature-card">More time back for your team</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="why-choose">
+      <h2 id="why-choose">Why Practices Choose Us</h2>
+      <div class="feature-grid" style="max-width: 720px;">
+        <div class="feature-card">Built for how patients actually decide</div>
+        <div class="feature-card">Proven, structured approach tailored to your market</div>
+        <div class="feature-card">Measurable results without long-term contracts</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-it-works">
+      <h2 id="how-it-works">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div style="font-size: 36px; margin-bottom: 16px;">1️⃣</div>
+          <h4>Assess</h4>
+          <p style="font-size: 15px; line-height: 1.6;">30-minute call to pinpoint leaks and upside.</p>
+        </div>
+        <div class="step-card">
+          <div style="font-size: 36px; margin-bottom: 16px;">2️⃣</div>
+          <h4>Plan</h4>
+          <p style="font-size: 15px; line-height: 1.6;">A focused 90-day growth blueprint that matches your market dynamics.</p>
+        </div>
+        <div class="step-card">
+          <div style="font-size: 36px; margin-bottom: 16px;">3️⃣</div>
+          <h4>Execute & Optimize</h4>
+          <p style="font-size: 15px; line-height: 1.6;">We build alongside your team and keep tuning for compounding ROI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="who-for">
+      <div class="callout">
+        <h2 id="who-for" style="margin-bottom: 20px;">Who It's For</h2>
+        <p style="font-size: 17px; line-height: 1.7;">Growth-minded practice owners and mission-driven teams ready to scale clinical impact and revenue without burning out their staff.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="trust">
+      <div class="callout">
+        <h2 id="trust" style="margin-bottom: 20px;">Built on Trust</h2>
+        <div class="trust-list">
+          <div>✓ Privacy-first workflows designed for healthcare compliance.</div>
+          <div>✓ Selected by practices across multiple metros to run revenue-critical funnels.</div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="cta">
+      <div class="cta-block">
+        <h2 id="cta" style="margin-bottom: 18px;">Ready to see the numbers for your practice?</h2>
+        <p style="font-size: 17px; line-height: 1.7; max-width: 540px; margin: 0 auto;">Book a strategy session and we’ll map your demand, response bottlenecks, and funnel opportunities—then outline the 90-day path to predictable growth.</p>
+        <a class="cta-button" href="https://calendar.app.google/Ux1Zqo3yRpa8QpC19" target="_blank" rel="noopener">Schedule your growth session →</a>
+      </div>
+    </section>
+        <b>The Compounding Effect:</b> As word spreads that your practice "always picks up" and "books you immediately," referral rate increases. Speed becomes your brand.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Scale Blueprint">
+    <div class="header">Slide 13 — The 90-Day Scale Plan</div>
+    <h2 class="h2">From pilot to market dominance in one quarter</h2>
+    <div class="list">
+      <div class="card">
+        <b>Days 1-14: Foundation</b><div class="hr"></div>
+        AI agent trained on your services, pricing, and availability. First 3 city pages live with tracking. Baseline metrics established.
+      </div>
+      <div class="card">
+        <b>Days 15-30: Validation</b><div class="hr"></div>
+        Scale to 8 cities. A/B test messaging and offers. Optimize AI conversation flow. Hit target CPL and qualification rate.
+      </div>
+      <div class="card">
+        <b>Days 31-60: Expansion</b><div class="hr"></div>
+        Launch remaining 15 cities. Increase ad spend on proven winners. Team trained on handling AI-qualified appointments.
+      </div>
+      <div class="card">
+        <b>Days 61-90: Dominance</b><div class="hr"></div>
+        Full network operational. Predictable lead flow. Begin vertical expansion (add aligners, cosmetic). Achieve $1M+ annual run rate.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Risk Reversal">
+    <div class="header">Slide 14 — Why This Is Low-Risk</div>
+    <h2 class="h2">We absorb the risk. You capture the upside.</h2>
+    <div class="row cols-2">
+      <div class="card">
+        <span class="token">Performance Guarantee:</span> If the system doesn't generate 8 qualified appointments per city in Month 2, we add cities for free until it does.
+      </div>
+      <div class="card">
+        <span class="token">Transparent Reporting:</span> Real-time dashboard shows every lead, call, qualification outcome, and revenue attribution. No black box.
+      </div>
+      <div class="card">
+        <span class="token">Flexible Scaling:</span> Start with 3 cities. Scale to 20. Pause underperformers. You control spend and can adjust monthly.
+      </div>
+      <div class="card">
+        <span class="token">Quick Payback:</span> Even at conservative conversion rates, the system pays for itself with 1-2 implant cases. Breakeven in Week 3.
+      </div>
+    </div>
+    <p class="sub" style="margin-top:24px">The only real risk is staying where you are—watching competitors implement this while your CPL climbs and conversion shrinks.</p>
+  </section>
+
+  <section class="slide" data-title="Objection: Quality">
+    <div class="header">Slide 15 — "But Will the Leads Be Quality?"</div>
+    <h2 class="h2">How AI qualification ensures you only talk to serious buyers</h2>
+    <div class="bullets">
+      <div><span class="token">Budget screening:</span> The AI directly asks about budget and financing interest. If they say "just browsing" or refuse to discuss pricing, they're marked as unqualified—your team never sees them.</div>
+      <div><span class="token">Timeline validation:</span> The AI asks when they want to move forward. "Sometime next year" gets nurtured via email. "I want to book this month" gets priority booking.</div>
+      <div><span class="token">Intent confirmation:</span> The AI probes on why they're considering the procedure now. Generic curiosity gets filtered. Specific pain points or events ("wedding in 3 months") convert at 40%+.</div>
+      <div><span class="token">Competitive intelligence:</span> The AI asks if they're considering other practices. This data informs your competitive positioning and helps your team close more effectively.</div>
+    </div>
+    <p class="sub" style="margin-top:16px">Result: Your team only talks to people who have budget, urgency, and intent. Your close rate jumps from 22% to 35%+.</p>
+  </section>
+
+  <section class="slide" data-title="Objection: SEO">
+    <div class="header">Slide 16 — "Will This Hurt My Main Site's SEO?"</div>
+    <h2 class="h2">How the network strengthens your brand authority</h2>
+    <div class="list">
+      <div class="card">
+        <b>No Cannibalization:</b> Each city page targets long-tail local intent your main site doesn't rank for ("Blue Ash cosmetic dentist open Saturday"). You capture new searches, not existing ones.
+      </div>
+      <div class="card">
+        <b>Clean Technical SEO:</b> Proper canonicals, unique content per city, and clear domain architecture ensure Google sees each property as a legitimate local presence.
+      </div>
+      <div class="card">
+        <b>Authority Boost:</b> As the network generates backlinks, reviews, and engagement signals, your brand authority grows—lifting your main site's rankings indirectly.
+      </div>
+      <div class="card">
+        <b>Local Pack Dominance:</b> With location-specific content and consistent NAP data, you're more likely to appear in Google's Local Pack for high-intent searches.
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Objection: Complexity">
+    <div class="header">Slide 17 — "This Sounds Complicated to Manage"</div>
+    <h2 class="h2">Designed for simplicity—you stay focused on dentistry</h2>
+    <div class="row cols-2">
+      <div class="card">
+        <b>Automated Maintenance:</b> Updates deploy in minutes via version-controlled content files. No CMS to log into. No plugins to update. No security patches.
+      </div>
+      <div class="card">
+        <b>White-Glove Support:</b> Included in your subscription: monthly optimization reviews, content refreshes, technical monitoring, and priority response.
+      </div>
+      <div class="card">
+        <b>Single Dashboard:</b> All metrics, all cities, one view. See CPL, qualification rate, revenue by source. Export to your CRM with one click.
+      </div>
+      <div class="card">
+        <b>Team Training:</b> We train your front desk on handling AI-qualified appointments. Takes 30 minutes. Most teams need zero ongoing support.
+      </div>
+    </div>
+    <p class="sub" style="margin-top:24px">Your involvement: 2 hours for initial setup interview, then 30 minutes monthly to review performance and approve new markets.</p>
+  </section>
+
+  <section class="slide" data-title="Case Study">
+    <div class="header">Slide 18 — The Ruther Family Dentistry Transformation</div>
+    <h2 class="h2">How one practice went from $320K to <span class="token">$1.5M annually</span></h2>
+    <div class="list">
+      <div class="card">
+        <b>Starting Point (January 2024):</b> Spending $6K/month on Google Ads. Getting 150 leads/month. Converting 12 (8%). Revenue: $86K from paid. Frustration: High.
+      </div>
+      <div class="card">
+        <b>Week 1-2 (Implementation):</b> Deployed 5-city pilot with AI agent. Maintained existing ad spend. Team trained on new appointment protocol.
+      </div>
+      <div class="card">
+        <b>Month 1 Results:</b> 147 leads generated. 92 qualified by AI (63%). 34 booked appointments. 18 showed and closed (53% show rate). Revenue: $156K. CPL dropped to $163.
+      </div>
+      <div class="card">
+        <b>Month 3 (Full Scale):</b> Expanded to 18 cities. Ad spend to $11K/month. 280 leads, 189 qualified, 67 closed. Revenue: $483K monthly. Annual run rate: $1.47M.
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;background:rgba(255,165,0,.15)">
+      <div class="impact">460% Revenue Growth</div>
+      <div class="sub" style="margin-top:8px">From $320K to $1.47M annually, while improving margins and reducing team stress.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="What You Get">
+    <div class="header">Slide 19 — Everything Included</div>
+    <h2 class="h2">The complete transformation system—nothing held back</h2>
+    <div class="row cols-2">
+      <div class="card"><b>AI Client Concierge</b>: 24/7 instant callback, qualification, booking, confirmation, reminders</div>
+      <div class="card"><b>City Revenue Network</b>: 15-20 optimized landing pages for your target markets</div>
+      <div class="card"><b>Analytics Dashboard</b>: Real-time CPL, conversion, revenue tracking by source</div>
+      <div class="card"><b>Call Tracking</b>: Every phone call recorded, transcribed, attributed to source</div>
+      <div class="card"><b>CRM Integration</b>: Leads flow directly into your existing system (optional)</div>
+      <div class="card"><b>Monthly Optimization</b>: Copy tests, offer experiments, conversion improvements</div>
+      <div class="card"><b>Performance Reports</b>: Monthly review calls with ROI analysis and recommendations</div>
+      <div class="card"><b>Compliance Assurance</b>: HIPAA-safe forms, accessibility, security built-in</div>
+    </div>
+    <p class="sub" style="margin-top:24px">This isn't a tool you manage. It's a revenue system we operate for you.</p>
+  </section>
+
+  <section class="slide" data-title="Next Steps">
+    <div class="header">Slide 20 — How to Start Your Transformation</div>
+    <h2 class="h2">Three steps to <span class="token">$1M+ in new annual revenue</span></h2>
+    <div class="list">
+      <div class="card">
+        <b>STEP 1: Strategy Session (This Week)</b><div class="hr"></div>
+        30-minute call to map your target services, cities, and current baseline. We'll project your 90-day revenue lift and build your custom roadmap.
+      </div>
+      <div class="card">
+        <b>STEP 2: Asset Acquisition (Next 48 Hours)</b><div class="hr"></div>
+        Secure the $9,997.97 AI Client Concierge system. Lock in your competitive advantage before competitors move. Begin AI training immediately.
+      </div>
+      <div class="card">
+        <b>STEP 3: Pilot Launch (Week 1-2)</b><div class="hr"></div>
+        First 5 revenue pipelines live with tracking. Your first AI-qualified appointments start flowing. Validation begins.
+      </div>
+      <div class="card">
+        <b>STEP 4: Scale to Dominance (30-90 Days)</b><div class="hr"></div>
+        Expand to 15-20 cities. Optimize based on data. Hit $100K+ monthly revenue run rate. Achieve market leadership.
+      </div>
+    </div>
+    <div style="margin-top:32px">
+      <a href="https://calendar.app.google/Ux1Zqo3yRpa8QpC19" class="cta">Schedule Your Strategy Session Now →</a>
+    </div>
+    <p class="note" style="margin-top:16px">Limited to 3 practices per metro area to preserve competitive advantage. Cincinnati slots filling fast.</p>
+  </section>
+
+</div>
+
+<div class="nav" id="nav">
+  <div class="progress"><i id="progress"></i></div>
+  <span id="counter">1 / 20</span>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  let current = 0;
+  const total = slides.length;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${total}`;
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      show(current + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      show(current - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      show(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      show(total - 1);
+    }
+  });
+
+  // Initialize
+  show(0);
+})();
+</script>
+
+</body>
+</html>

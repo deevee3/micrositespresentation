@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transform Patient Intent Into Booked Treatment | InnovateForGood</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links > li {
+  position: relative;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: block;
+  padding: 8px 0;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a {
+  cursor: pointer;
+  padding-right: 16px;
+  position: relative;
+}
+
+.dropdown > a::after {
+  content: "▼";
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  padding: 12px 20px;
+  color: #666;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #f8f9fa;
+  color: #1a1a1a;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  background: linear-gradient(180deg, #e8f4f8 0%, #d4e7f0 50%, #c1dae8 100%);
+  position: relative;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+.hero p {
+  font-size: clamp(18px, 2.5vw, 20px);
+  color: #444;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #1a1a1a;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button.secondary {
+  background: white;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+}
+
+/* Section Container */
+.section {
+  padding: 120px 40px;
+  position: relative;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 64px;
+  color: #1a1a1a;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  max-width: 800px;
+  margin: -40px auto 64px;
+  line-height: 1.7;
+}
+
+/* Gradient Background Sections */
+.bg-blue {
+  background: linear-gradient(180deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+}
+
+.bg-mint {
+  background: linear-gradient(180deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+}
+
+.bg-peach {
+  background: linear-gradient(180deg, #fff3e0 0%, #ffe0b2 50%, #ffcc80 100%);
+}
+
+/* Feature Cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.feature-card {
+  background: white;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* Metric Cards */
+.metric-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 48px;
+  font-weight: 800;
+  color: #2196f3;
+  margin-bottom: 8px;
+}
+
+.metric-label {
+  font-size: 16px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Evidence Section */
+.evidence-list {
+  display: grid;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.evidence-item {
+  background: white;
+  padding: 28px 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #4caf50;
+}
+
+.evidence-item h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.evidence-item p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+.evidence-note {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* Process Steps */
+.process-steps {
+  display: grid;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.process-step {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.process-step h4 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.process-step p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* Guarantee Section */
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.guarantee-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.guarantee-card h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.guarantee-card p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 120px 40px;
+  background: #f8f9fa;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+  padding: 24px 32px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.faq-question:hover {
+  background: #f8f9fa;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 32px;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 600px;
+  padding: 0 32px 24px 32px;
+}
+
+.faq-icon {
+  transition: transform 0.3s;
+  font-size: 20px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  padding: 100px 40px;
+  text-align: center;
+  color: white;
+}
+
+.cta-section h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.cta-section p {
+  font-size: 20px;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.95;
+}
+
+.cta-section .cta-button {
+  background: white;
+  color: #ff6b35;
+}
+
+/* Footer */
+footer {
+  background: #0a1929;
+  color: white;
+  padding: 80px 40px 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 24px;
+  }
+  
+  .nav-links {
+    gap: 16px;
+  }
+  
+  .section {
+    padding: 80px 24px;
+  }
+  
+  .hero {
+    padding: 100px 24px 60px;
+  }
+  
+  .cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cta-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">InnovateForGood</a>
+  <ul class="nav-links">
+    <li class="dropdown">
+      <a>Services</a>
+      <div class="dropdown-menu">
+        <a href="dental.html">Dental Practices</a>
+        <a href="artists.html">Artists & Creators</a>
+        <a href="hvac.html">HVAC Contractors</a>
+      </div>
+    </li>
+    <li><a href="pricing.html">Investment</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a>Resources</a>
+      <div class="dropdown-menu">
+        <a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a>
+        <a href="microsites-deck.html">System Overview</a>
+        <a href="evidence-brief.html">Industry Evidence</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-kicker">Measurable growth, not more noise.</div>
+    <h1>Transform Patient Intent Into Booked Treatment</h1>
+    <p>Turn high-intent searches into scheduled consults and predictable revenue with conversion-first microsites, sub-minute follow-up, and structured reminders.</p>
+    <div class="cta-group">
+      <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="cta-button">Book a Call</a>
+      <a href="evidence-brief.html" class="cta-button secondary">Get the Evidence Brief</a>
+    </div>
+  </div>
+</section>
+
+<!-- What You Get Section -->
+<section class="section bg-blue" id="what-you-get">
+  <div class="section-content">
+    <h2 class="section-title">What You Get (With Measurable Targets)</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Consistent growth in high-value case starts</h3>
+        <p>We baseline your funnel and target a ≥3–8% page conversion rate (traffic-dependent) with weekly reporting on leads, show rate, and starts.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Faster follow-up, fewer lost opportunities</h3>
+        <p>Sub-minute response targets for new inquiries, with clear SLAs and audit logs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Higher case acceptance and patient experience</h3>
+        <p>Pre-visit education, financing prompts, and reminders to reduce no-shows and improve readiness.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Forecastable revenue</h3>
+        <p>Month-over-month projections tied to your real funnel math (sessions → leads → qualified → starts → revenue).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Evidence Section -->
+<section class="section" id="evidence">
+  <div class="section-content">
+    <h2 class="section-title">Why This Works (External Evidence You Can Cite)</h2>
+    <div class="evidence-list">
+      <div class="evidence-item">
+        <h4>Timely reminders increase attendance</h4>
+        <p>Multiple randomized and systematic reviews show mobile reminders materially reduce no-shows across outpatient care.</p>
+      </div>
+      <div class="evidence-item">
+        <h4>Conversational agents improve process outcomes</h4>
+        <p>Systematic reviews in healthcare find chat/virtual agents acceptable to patients and effective on scheduling/triage and adherence.</p>
+      </div>
+      <div class="evidence-item">
+        <h4>Access and speed drive conversion</h4>
+        <p>When scheduling is immediate and the next step is obvious, contact and qualification rates climb; "phone-only" or next-day callbacks depress outcomes.</p>
+      </div>
+    </div>
+    <p class="evidence-note">Note: I can insert formal citations and links on request (Cochrane; JAMIA; JMIR).</p>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="section bg-mint">
+  <div class="section-content">
+    <h2 class="section-title">How It Works</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <h4>Assess</h4>
+        <p>30-minute free strategy call to pinpoint leaks and upside in your current patient acquisition funnel.</p>
+      </div>
+      <div class="process-step">
+        <h4>Purchase & Launch</h4>
+        <p>Buy the complete system outright: conversion-first microsites, instant callback and booking, reminder flows, financing prompts, and analytics—all included.</p>
+      </div>
+      <div class="process-step">
+        <h4>Scale & Optimize</h4>
+        <p>Launch, measure, and scale winners. Expand to additional cities and services as you see results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What's Included Section -->
+<section class="section">
+  <div class="section-content">
+    <h2 class="section-title">What's Included</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Conversion-first microsites</h3>
+        <p>Fast, city-specific pages with trust signals, 5-field form, and sticky tap-to-call.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Instant response and booking</h3>
+        <p>Sub-minute call/text engagement, basic qualification, direct scheduling, and automated reminders.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Financing and readiness prompts</h3>
+        <p>Reduce price friction and increase show rates.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Analytics and attribution</h3>
+        <p>UTM capture, event tracking (phone clicks, form submit, show/no-show), and weekly rollups.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Governance and compliance</h3>
+        <p>HIPAA-ready workflows, BAAs as needed, audit logs, and accessible design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Proof and Guarantee Section -->
+<section class="section bg-peach">
+  <div class="section-content">
+    <h2 class="section-title">Proof and Guarantee</h2>
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <h4>Performance Guarantee</h4>
+        <p>If the system doesn't generate 8 qualified appointments per city in Month 2, we add cities at no extra cost until it does.</p>
+      </div>
+      <div class="guarantee-card">
+        <h4>Transparent Reporting</h4>
+        <p>Real-time dashboard showing every lead, call, qualification outcome, and revenue attribution—no black box.</p>
+      </div>
+      <div class="guarantee-card">
+        <h4>Quick Payback</h4>
+        <p>Even at conservative conversion rates, the system pays for itself with 1–2 implant cases; breakeven typically by Week 3.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results Snapshot Section -->
+<section class="section">
+  <div class="section-content">
+    <h2 class="section-title">Results Snapshot</h2>
+    <p class="section-subtitle">Template—We'll fill with your data</p>
+    <div class="feature-grid">
+      <div class="metric-card">
+        <div class="metric-value">X→Y%</div>
+        <div class="metric-label">Conversion rate (traffic-dependent)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">&lt;60s</div>
+        <div class="metric-label">Speed-to-lead (from "next-day call")</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">+Δpp</div>
+        <div class="metric-label">Show rate with reminders</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">$Δ/mo</div>
+        <div class="metric-label">Revenue from added starts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Day 1 Section -->
+<section class="section bg-blue">
+  <div class="section-content">
+    <h2 class="section-title">What Happens on Day 1</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Friction Audit</h3>
+        <p>We run a complete audit of your current journey (ad/search → page → inquiry → response → booking).</p>
+      </div>
+      <div class="feature-card">
+        <h3>Baseline Model</h3>
+        <p>You receive a baseline model showing current performance across all key metrics.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Implementation Plan</h3>
+        <p>A prioritized roadmap with clear next steps and tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="faq-container">
+    <h2 class="section-title">Common Questions</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        Will this work in my market?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes. We include a market analysis during your strategy call to determine viability and right-size the plan for competitive urban or underserved suburban areas.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        How is this different from a traditional marketing agency?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        We optimize the entire journey—from search to booked appointment—and pair conversion-first pages with instant follow-up and reminders. Practices typically see materially better outcomes than lead-gen alone because speed-to-lead and show rates are managed, not left to chance.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        How do you measure success?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Pre-agreed KPIs: conversion rate (page), speed-to-lead (seconds), show rate, case starts, CPL/CAC, and ROAS. Weekly reporting with "what changed and why."
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        What if we're phone-only right now?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        We add a mobile-first request/booking path and keep your phone prominent. The aim is to add an immediate, low-friction option—not remove phone scheduling.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        What about compliance?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        HIPAA-ready workflows and BAAs available. No PHI stored outside covered systems. Consent-based messaging with opt-outs.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <h2>Ready to Transform Your Practice?</h2>
+  <p>Book a free strategy call to discuss your needs, or purchase the complete system outright. No subscriptions, no recurring fees—just results.</p>
+  <div class="cta-group">
+    <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="cta-button">Book a Free Call</a>
+    <a href="pricing.html" class="cta-button secondary">See Pricing</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>InnovateForGood</h4>
+      <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">
+        Marketing systems that transform businesses—and communities—for the better.
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="dental.html">Dental Practices</a></li>
+        <li><a href="artists.html">Artists & Creators</a></li>
+        <li><a href="hvac.html">HVAC Contractors</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a></li>
+        <li><a href="microsites-deck.html">System Overview</a></li>
+        <li><a href="evidence-brief.html">Industry Evidence</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="pricing.html">Investment & Returns</a></li>
+        <li><a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-trust">
+    <div class="trust-signal">
+      <span>🔒</span>
+      <span>Secure Payments</span>
+    </div>
+    <div class="trust-signal">
+      <span>⚡</span>
+      <span>Fast Implementation</span>
+    </div>
+    <div class="trust-signal">
+      <span>📊</span>
+      <span>Performance Guaranteed</span>
+    </div>
+    <div class="trust-signal">
+      <span>🎯</span>
+      <span>Research-Backed</span>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    © 2025 InnovateForGood. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const item = question.parentElement;
+    const wasActive = item.classList.contains('active');
+    
+    // Close all items
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    
+    // Open clicked item if it wasn't active
+    if (!wasActive) {
+      item.classList.add('active');
+    }
+  });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

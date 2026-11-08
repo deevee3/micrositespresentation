@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Evidence Brief — Why Microsites + AI Intake Win Now | InnovateForGood</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 1.7;
+  color: #0f172a;
+  background: #f7f5ef;
+}
+
+/* Navigation - matches main site */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links > li {
+  position: relative;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: block;
+  padding: 8px 0;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a {
+  cursor: pointer;
+  padding-right: 16px;
+  position: relative;
+}
+
+.dropdown > a::after {
+  content: "▼";
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  padding: 12px 20px;
+  color: #666;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #f8f9fa;
+  color: #1a1a1a;
+}
+
+/* Sales Letter Content */
+.wrap {
+  max-width: 820px;
+  margin: 100px auto 64px;
+  padding: 48px;
+  background: #fffdf8;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.pre {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  font-size: 12px;
+  margin: 0 0 12px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+}
+
+.h1 {
+  font-size: clamp(32px, 5vw, 40px);
+  line-height: 1.1;
+  margin: 0 0 16px;
+  text-align: center;
+  color: #0f172a;
+}
+
+.sub {
+  font-size: clamp(18px, 3vw, 20px);
+  line-height: 1.4;
+  color: #475569;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.rule {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 32px 0;
+}
+
+.johnson {
+  background: #fef3c7;
+  border: 2px solid #fbbf24;
+  padding: 24px;
+  border-radius: 8px;
+  margin: 24px 0;
+}
+
+.johnson b {
+  color: #92400e;
+  font-weight: 700;
+}
+
+.lead {
+  font-size: clamp(17px, 2.5vw, 18px);
+  line-height: 1.7;
+  margin: 24px 0;
+}
+
+.stamp {
+  font-weight: bold;
+  color: #b91c1c;
+}
+
+h2 {
+  font-size: clamp(20px, 3.5vw, 24px);
+  margin: 32px 0 16px;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 20px 0 12px;
+  color: #475569;
+  font-weight: 600;
+}
+
+p {
+  margin: 16px 0;
+  line-height: 1.7;
+}
+
+ul {
+  margin: 16px 0 24px 24px;
+  line-height: 1.7;
+}
+
+li {
+  margin: 10px 0;
+}
+
+.box {
+  border: 2px solid #e5e7eb;
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  margin: 24px 0;
+}
+
+.kpi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.kpi b {
+  display: inline-block;
+  background: #1e293b;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.quote {
+  border-left: 4px solid #b91c1c;
+  padding-left: 20px;
+  background: #fff;
+  padding: 20px 20px 20px 24px;
+  border-radius: 6px;
+  font-style: italic;
+  margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cta {
+  display: inline-block;
+  background: #b91c1c;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 8px;
+  transition: transform 0.2s, background 0.2s;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.cta:hover {
+  background: #991b1b;
+  transform: translateY(-2px);
+}
+
+.ps {
+  font-size: 16px;
+  color: #475569;
+  margin: 24px 0;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background: #0a1929;
+  color: white;
+  padding: 60px 40px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 24px;
+  }
+  
+  .nav-links {
+    gap: 16px;
+  }
+  
+  .wrap {
+    margin: 90px 16px 40px;
+    padding: 24px;
+  }
+  
+  .kpi {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">InnovateForGood</a>
+  <ul class="nav-links">
+    <li class="dropdown">
+      <a>Services</a>
+      <div class="dropdown-menu">
+        <a href="dental.html">Dental Practices</a>
+        <a href="artists.html">Artists & Creators</a>
+        <a href="hvac.html">HVAC Contractors</a>
+      </div>
+    </li>
+    <li><a href="pricing.html">Investment</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a>Resources</a>
+      <div class="dropdown-menu">
+        <a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a>
+        <a href="microsites-deck.html">System Overview</a>
+        <a href="evidence-brief.html">Industry Evidence</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- Sales Letter Content -->
+<div class="wrap">
+  <div class="pre">Special Report • Evidence Brief</div>
+  <h1 class="h1">Win Emergency Calls. Lower CPL. Prove It in Weeks.</h1>
+  <div class="sub">Microsites built for "[City] emergency HVAC repair" + sub-minute responses</div>
+  <div class="rule"></div>
+
+  <div class="johnson">
+    <b>Week-one proof from a fresh pilot:</b> Search Console recorded 39 impressions (U.S.) with avg position ~32—immediate eligibility. Desktop averaged ~12.5 while mobile lagged at ~43 (fixable gap). Both HTTP and HTTPS versions were indexed (canonicalize). A money query touched page one (pos ~10→6). Each signal points to a fast, high-leverage repair you can make now.
+  </div>
+
+  <h2>The evidence</h2>
+  <ul>
+    <li>Visibility out of the gate: 39 impressions, avg position ~32 across variants confirm indexing and eligibility within the first window.</li>
+    <li>Device gap = opportunity: Desktop pos ~12.5 vs mobile ~43 → prioritize mobile speed and snippet relevance where most local demand lives.</li>
+    <li>Canonical leak identified: both http and https indexed for the same city page → consolidate to HTTPS + rel=canonical to stabilize performance and CTR.</li>
+    <li>Page-one potential: "emergency hvac repair cincinnati" hit ~10.5 and later ~6 → retitle/meta + tighten on-page copy to win the click and convert.</li>
+  </ul>
+
+  <h2>System behaviors that move the numbers</h2>
+  <ul>
+    <li>Conversion-first microsites: sub-2s mobile load, sticky tap-to-call, 5-field form, city/ZIP copy, LocalBusiness + FAQ schema.</li>
+    <li>Fast follow-up: answer inside minutes (sub-minute target) to secure same-day jobs; the five-minute window principle applies strongly in emergencies.</li>
+    <li>Governed iteration: JSON content + CI/CD for rapid copy/offers; events for phone_click and form_submit; weekly rollups.</li>
+  </ul>
+
+  <h2>First 14 days (playbook)</h2>
+  <ul>
+    <li>Day 1–3: Canonicalize to HTTPS, retitle/meta for the near-page-one query, inject LocalBusiness/FAQ schema, ship sticky call bar.</li>
+    <li>Day 4–7: Hit sub-2s mobile load; add microcopy ("Techs available today; avg on-site ~2 hours"); track phone_click and form_submit.</li>
+    <li>Day 8–14: Expand winning copy to adjacent city pages; monitor device positions and CTR; iterate weekly.</li>
+  </ul>
+
+  <h2>Targets to manage</h2>
+  <div class="kpi">
+    <b>Page speed: &lt;2s mobile, 90+ Lighthouse</b>
+    <b>CVR: ≥3% form + call lift</b>
+    <b>Device gap: mobile pos from 40s → teens</b>
+  </div>
+
+  <div class="rule"></div>
+  <p class="center" style="margin-top:24px">
+    <a class="cta" href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Request the HVAC Pilot Walkthrough</a>
+  </p>
+  <p class="center muted" style="margin-top:16px">Citations: pilot data (impressions/positions/devices/pages/queries); implementation and benchmarks; speed-to-lead principle.</p>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>InnovateForGood</h4>
+      <p style="color: #aaa; font-size: 14px; line-height: 1.6;">
+        Marketing that transforms practices—and communities—for the better.
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="dental.html">Dental</a></li>
+        <li><a href="artists.html">Artists</a></li>
+        <li><a href="hvac.html">HVAC</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="transformation_deck-2.html">Transformation Deck</a></li>
+        <li><a href="microsites-deck.html">Microsites Deck</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="evidence-brief.html">Evidence Brief</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    © 2024 Innovate for Good. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>

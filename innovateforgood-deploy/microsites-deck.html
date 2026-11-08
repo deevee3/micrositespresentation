@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City‑Targeted Microsite Networks — InnovateForGood</title>
+<meta name="theme-color" content="#0b0f19">
+<style>
+:root{
+  --bg:#0b0f19; --fg:#eef2f7; --muted:#9aa4b2; --accent:#ff6b35; --card:rgba(255,255,255,.06);
+  --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+*{box-sizing:border-box} html,body{height:100%;margin:0}
+body{
+  font-family:var(--font);
+  background: radial-gradient(1200px 800px at 80% -20%, rgba(255,107,53,.18), transparent), var(--bg);
+  color:var(--fg);
+}
+.deck{min-height:100vh;display:flex;flex-direction:column}
+.slide{
+  display:none; min-height:100vh; padding:clamp(24px,6vw,72px);
+  flex-direction:column; gap:24px;
+}
+.slide.active{display:flex}
+.header{letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:12px}
+.h1{font-size:clamp(32px,6vw,60px);line-height:1.05;font-weight:800;margin:0}
+.h2{font-size:clamp(22px,4vw,36px);line-height:1.15;margin:0 0 8px;font-weight:800}
+.sub{font-size:clamp(16px,2.6vw,22px);color:#cfd7e3;max-width:64ch;margin:0}
+.list{display:grid;gap:10px;max-width:960px}
+.card{background:var(--card);padding:14px 16px;border-radius:12px}
+.row{display:grid;grid-template-columns:1fr;gap:10px}
+.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:860px){.cols-2,.cols-3{grid-template-columns:1fr}}
+.bad{color:#fda4af}.good{color:#86efac}.token{color:var(--accent);font-weight:700}
+.footer{
+  margin-top:auto; display:flex;gap:16px;align-items:center;background:var(--card);
+  padding:12px 16px;border-radius:12px;align-self:flex-start
+}
+.footer img{height:28px;width:auto}
+.kbd{
+  display:inline-block;padding:2px 6px;border:1px solid #4b5563;border-radius:6px;
+  font-size:12px;background:rgba(255,255,255,.06);color:#cbd5e1
+}
+.nav{
+  position:fixed;bottom:10px;right:10px;display:flex;gap:8px;align-items:center;
+  background:var(--card);padding:8px 12px;border-radius:10px;font-size:12px;color:var(--muted)
+}
+.progress{height:3px;background:#1f2937;border-radius:999px;overflow:hidden;margin:0 0 6px}
+.progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6b35,#ff8c42)}
+.mobile-nav-buttons{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  display:none;gap:20px;z-index:1002;
+}
+.mobile-nav-btn{
+  width:60px;height:60px;border-radius:50%;
+  background:var(--accent);color:#06250f;border:none;
+  font-size:28px;font-weight:800;cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s;
+}
+.mobile-nav-btn:active{transform:scale(.95)}
+@media(max-width:768px){
+  .mobile-nav-buttons{display:flex}
+  .hint{display:none}
+}
+nav{background:#0a1929;padding:20px 40px;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+nav .logo{color:#fff;font-weight:800;font-size:20px;text-decoration:none}
+nav .nav-links{list-style:none;display:flex;gap:32px;margin:0;padding:0;align-items:center;margin-left:auto}
+nav .nav-links > li{position:relative}
+nav .nav-links > li > a{color:#fff;text-decoration:none;font-weight:500;font-size:15px;transition:color .3s;cursor:pointer}
+nav .nav-links > li > a:hover{color:var(--accent)}
+.dropdown{position:relative}
+.dropdown-menu{display:none;position:absolute;top:100%;left:0;background:#0a1929;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 0;min-width:200px;margin-top:8px;z-index:1001}
+.dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu a{display:block;padding:10px 20px;color:#fff;white-space:nowrap}
+.dropdown-menu a:hover{background:rgba(255,255,255,.06);color:var(--accent)}
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  nav .nav-links{gap:20px}
+}
+.site-footer{background:#0a1929;color:#fff;padding:60px 40px 30px;margin-top:auto;border-top:1px solid rgba(255,255,255,.08)}
+.footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
+.footer-col h4{margin-bottom:16px;font-weight:700}
+.footer-col ul{list-style:none;padding:0;margin:0}
+.footer-col ul li{margin-bottom:8px}
+.footer-col a{color:#aaa;text-decoration:none;font-size:14px}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{text-align:center;padding-top:30px;margin-top:30px;border-top:1px solid rgba(255,255,255,.08);color:#666;font-size:13px}
+.hr{height:1px;background:rgba(255,255,255,.12);border:none;margin:8px 0}
+.bullets{display:grid;gap:8px;max-width:960px}
+.bullets > div::before{content:"• ";color:var(--accent);font-weight:700}
+.cta{
+  display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#06250f;
+  padding:12px 18px;border-radius:10px;font-weight:800;text-decoration:none
+}
+.note{font-size:13px;color:#cbd5e1}
+.small{font-size:14px;color:#cbd5e1}
+.table{width:100%;max-width:1000px;border-collapse:separate;border-spacing:0 8px}
+.table td{padding:10px 12px;background:var(--card);border-radius:8px}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#a5b4fc}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">InnovateForGood</a>
+  <ul class="nav-links">
+    <li class="dropdown">
+      <a>Services</a>
+      <div class="dropdown-menu">
+        <a href="dental.html">Dental Practices</a>
+        <a href="artists.html">Artists & Creators</a>
+        <a href="hvac.html">HVAC Contractors</a>
+      </div>
+    </li>
+    <li><a href="pricing.html">Investment</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a>Resources</a>
+      <div class="dropdown-menu">
+        <a href="transformation_deck-2.html">Industry Data: $1.5M Opportunity</a>
+        <a href="microsites-deck.html">System Overview</a>
+        <a href="evidence-brief.html">Industry Evidence</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="deck" id="deck">
+
+  <!-- Slide 1 — Title -->
+  <section class="slide active" data-title="Title">
+    <div class="header">Slide 1 — Title</div>
+    <h1 class="h1">City‑Targeted Microsite Networks for <span class="token">Local Businesses</span></h1>
+    <p class="sub">Predictable, scalable local lead generation without heavy CMS or dev bottlenecks. Built for mobile. Deployed at the edge. Operated for results.</p>
+    <div class="card" style="max-width:860px">
+      <b>Elevator pitch</b>
+      <p class="small">We build fast, city‑specific pages that convert high‑intent local searches into booked appointments. Scalable, low‑maintenance, and measurable—so you lower CPL and gain control.</p>
+    </div>
+  </section>
+
+  <!-- Slide 2 — The Problem We Solve -->
+  <section class="slide" data-title="Problem">
+    <div class="header">Slide 2 — The Problem We Solve</div>
+    <h2 class="h2">High‑intent local traffic is leaking</h2>
+    <div class="bullets">
+      <div>Searchers land on slow, generic pages with no clear next step</div>
+      <div>Brand sites are overloaded and not purpose‑built for conversion</div>
+      <div>CMS sprawl and dev bottlenecks delay campaigns</div>
+      <div>Rising ad costs demand better conversion and attribution</div>
+    </div>
+    <div class="footer"><span class="kbd">←</span> <span class="kbd">→</span> Navigate • Focus: transformation, not tactics</div>
+  </section>
+
+  <!-- Slide 3 — Our Solution -->
+  <section class="slide" data-title="Solution">
+    <div class="header">Slide 3 — Our Solution</div>
+    <h2 class="h2">A portfolio of ultra‑fast microsites for each target city</h2>
+    <div class="list">
+      <div class="card">Localized copy + trust signals + structured data</div>
+      <div class="card">Mobile‑first 5‑field forms + sticky tap‑to‑call</div>
+      <div class="card">Automated deployment in minutes, not weeks</div>
+      <div class="card">Clear attribution and weekly reporting</div>
+    </div>
+  </section>
+
+  <!-- Slide 4 — Why Microsites Win Now -->
+  <section class="slide" data-title="Why Now">
+    <div class="header">Slide 4 — Why Microsites Win Now</div>
+    <h2 class="h2">Match intent. Maximize speed. Focus on conversion.</h2>
+    <div class="row cols-2">
+      <div class="card"><span class="token">Intent match</span>: "[city] {service}" pages built to convert</div>
+      <div class="card"><span class="token">Speed = revenue</span>: sub‑2s loads on 3G</div>
+      <div class="card"><span class="token">Focused UX</span>: one job—capture the lead or call</div>
+      <div class="card"><span class="token">Flexible growth</span>: add cities in minutes via JSON content</div>
+    </div>
+  </section>
+
+  <!-- Slide 5 — What's Inside Each Microsite -->
+  <section class="slide" data-title="Inside">
+    <div class="header">Slide 5 — What's Inside Each Microsite</div>
+    <h2 class="h2">Everything needed to convert a motivated visitor—nothing extra</h2>
+    <div class="row cols-3">
+      <div class="card">Hero with city‑specific headline and reassurance badges</div>
+      <div class="card">Sticky "Tap to Call" bar on mobile</div>
+      <div class="card">5‑field lead form with validation and privacy note</div>
+      <div class="card">Testimonials and rating snippet (optional)</div>
+      <div class="card">FAQ + LocalBusiness/FAQ JSON‑LD</div>
+      <div class="card">Clear CTAs: Call now or Request consult</div>
+    </div>
+  </section>
+
+  <!-- Slide 6 — How It Works (Flow) -->
+  <section class="slide" data-title="How It Works">
+    <div class="header">Slide 6 — How It Works (Flow)</div>
+    <h2 class="h2">From brief to booked in days</h2>
+    <ol class="list">
+      <li>Choose vertical + cities</li>
+      <li>Localize content, trust signals, and schema</li>
+      <li>Configure call tracking + form routing</li>
+      <li>Deploy to Cloudflare edge + map domains</li>
+      <li>Leads delivered instantly by email (optional CRM/Zapier)</li>
+      <li>Attribution via UTM and event tracking</li>
+    </ol>
+  </section>
+
+  <!-- Slide 7 — Tech Advantage -->
+  <section class="slide" data-title="Tech Advantage">
+    <div class="header">Slide 7 — Tech Advantage</div>
+    <h2 class="h2">Fast, reliable, low‑maintenance by design</h2>
+    <div class="row cols-2">
+      <div class="card">Static export on global edge (Cloudflare Pages)</div>
+      <div class="card">JSON content—no CMS to maintain</div>
+      <div class="card">Automated tests and Lighthouse performance checks</div>
+      <div class="card">Accessible, secure, SEO‑friendly defaults</div>
+    </div>
+  </section>
+
+  <!-- Slide 8 — UX That Converts on Mobile -->
+  <section class="slide" data-title="Mobile UX">
+    <div class="header">Slide 8 — UX That Converts on Mobile</div>
+    <h2 class="h2">Built for thumbs: clarity, speed, and confidence</h2>
+    <div class="list">
+      <div class="card">Sticky Call Bar with tracking</div>
+      <div class="card">One‑tap service selection pills</div>
+      <div class="card">Autocomplete and input‑mode optimized fields</div>
+      <div class="card">Reassurance microcopy and instant error messages</div>
+    </div>
+  </section>
+
+  <!-- Slide 9 — Local SEO Strategy -->
+  <section class="slide" data-title="Local SEO">
+    <div class="header">Slide 9 — Local SEO Strategy</div>
+    <h2 class="h2">Show up for local intent—and look like a local leader</h2>
+    <div class="list">
+      <div class="card">City + neighborhood + ZIP references</div>
+      <div class="card">LocalBusiness and FAQPage JSON‑LD</div>
+      <div class="card">Consistent NAP and canonical per domain</div>
+      <div class="card">Lightning‑fast pages lower bounce and lift rankings</div>
+    </div>
+  </section>
+
+  <!-- Slide 10 — Results You Can Expect -->
+  <section class="slide" data-title="Results">
+    <div class="header">Slide 10 — Results You Can Expect</div>
+    <h2 class="h2">Predictable lift in paid and organic efficiency</h2>
+    <table class="table" role="table" aria-label="Expected metrics">
+      <tr><td><b>Conversion rate</b></td><td>3–8% typical for local services (traffic‑dependent)</td></tr>
+      <tr><td><b>Page speed</b></td><td>< 2s on 3G; 90+ Lighthouse</td></tr>
+      <tr><td><b>Deployment</b></td><td>New city live in < 15 minutes</td></tr>
+      <tr><td><b>Reporting</b></td><td>Weekly rollups with clear CPL</td></tr>
+    </table>
+    <p class="note">Benchmarks vary by channel and market. We'll model outcomes with your numbers.</p>
+  </section>
+
+  <!-- Slide 11 — ROI Model -->
+  <section class="slide" data-title="ROI Model">
+    <div class="header">Slide 11 — ROI Model</div>
+    <h2 class="h2">From traffic to revenue—simple math, full visibility</h2>
+    <div class="list">
+      <div class="card">Leads = Sessions × Conversion Rate</div>
+      <div class="card">SQLs = Leads × Qualification Rate</div>
+      <div class="card">Closed = SQLs × Close Rate</div>
+      <div class="card">Revenue = Closed × Avg Case Value</div>
+      <div class="card">CPL = Spend ÷ Leads • CAC = Spend ÷ Closed • ROAS = Revenue ÷ Spend</div>
+    </div>
+    <p class="note">We provide a calculator to estimate CPL and payback per city.</p>
+  </section>
+
+  <!-- Slide 12 — Pricing Options -->
+  <section class="slide" data-title="Pricing">
+    <div class="header">Slide 12 — Simple, Transparent Pricing</div>
+    <h2 class="h2">Choose what works for you</h2>
+    <div class="row cols-3">
+      <div class="card">
+        <b>Strategy Call</b>
+        <div class="hr"></div>
+        <div style="font-size:28px;font-weight:800;color:var(--accent);margin:12px 0">Free</div>
+        <div class="small">30 minutes</div>
+        <div class="hr"></div>
+        <div class="small">• Business assessment<br>• Revenue leak analysis<br>• Custom growth roadmap<br>• No commitment required</div>
+      </div>
+      <div class="card" style="border:2px solid var(--accent)">
+        <div style="background:var(--accent);color:#06250f;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:8px;display:inline-block">Most Popular</div>
+        <b>Complete Marketing System</b>
+        <div class="hr"></div>
+        <div style="font-size:28px;font-weight:800;color:var(--accent);margin:12px 0">$9,997.97</div>
+        <div class="small">One-time setup fee</div>
+        <div class="hr"></div>
+        <div class="small">• Full AI implementation<br>• 1 year tech support<br>• No monthly fees ever<br>• Multi-city campaigns<br>• Performance guarantee</div>
+      </div>
+      <div class="card">
+        <b>Enterprise</b>
+        <div class="hr"></div>
+        <div style="font-size:28px;font-weight:800;color:var(--accent);margin:12px 0">Custom</div>
+        <div class="small">For multi-location businesses</div>
+        <div class="hr"></div>
+        <div class="small">• Everything in Marketing System<br>• Multi-location rollout<br>• White-glove support<br>• Dedicated success manager<br>• Custom integrations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13 — Implementation Timeline -->
+  <section class="slide" data-title="Timeline">
+    <div class="header">Slide 13 — Implementation Timeline</div>
+    <h2 class="h2">From pilot to scale in under a month</h2>
+    <div class="list">
+      <div class="card"><b>Week 0</b>: Discovery (brand, offers, cities, compliance)</div>
+      <div class="card"><b>Week 1</b>: Design system + content templates</div>
+      <div class="card"><b>Week 2</b>: Launch first 5 cities + tracking + QA</div>
+      <div class="card"><b>Weeks 3–4</b>: Scale to 20+ cities; baselines + optimizations</div>
+      <div class="card"><b>Ongoing</b>: Monthly iterations; new markets in minutes</div>
+    </div>
+  </section>
+
+  <!-- Slide 14 — Integrations and Governance -->
+  <section class="slide" data-title="Integrations">
+    <div class="header">Slide 14 — Integrations & Governance</div>
+    <h2 class="h2">Plug into your stack—governed and versioned</h2>
+    <div class="row cols-2">
+      <div class="card"><b>Out‑of‑the‑box</b>: Email delivery, UTM capture, call tracking ready</div>
+      <div class="card"><b>Optional</b>: Zapier/Make → CRM, CallRail/Twilio, GA4/Plausible, GTM</div>
+      <div class="card"><b>Governance</b>: Git change control, PR approvals, audit history</div>
+      <div class="card"><b>Compliance</b>: Accessibility and security baked in</div>
+    </div>
+  </section>
+
+  <!-- Slide 15 — Risk and Objection Handling -->
+  <section class="slide" data-title="Objections">
+    <div class="header">Slide 15 — Risk & Objections</div>
+    <h2 class="h2">Common questions—answered upfront</h2>
+    <div class="list">
+      <div class="card"><b>Brand dilution?</b> Custom theming and content guidelines; shared components ensure consistency.</div>
+      <div class="card"><b>SEO cannibalization?</b> Unique localized content, clean canonicals, and disciplined domain strategy.</div>
+      <div class="card"><b>Lead quality?</b> Form design + qualification rules; optional call recording and lead scoring.</div>
+      <div class="card"><b>Maintenance?</b> JSON content + CI/CD mean edits deploy in minutes with version control.</div>
+    </div>
+  </section>
+
+  <!-- Slide 16 — Vertical Templates -->
+  <section class="slide" data-title="Templates">
+    <div class="header">Slide 16 — Vertical Templates</div>
+    <h2 class="h2">Reusable patterns for any vertical</h2>
+    <div class="row cols-2">
+      <div class="card"><b>Dental/Med Spa</b>: financing banner, before/after policy, HIPAA‑safe forms (no PHI)</div>
+      <div class="card"><b>Home Services</b>: emergency intent, tap‑to‑call prominence, service area maps</div>
+      <div class="card"><b>Legal</b>: disclaimers, appointment booking, location trust cues</div>
+      <div class="card"><b>B2B SaaS</b>: demo flow, calendaring, social proof logos</div>
+    </div>
+  </section>
+
+  <!-- Slide 17 — Case Snapshot -->
+  <section class="slide" data-title="Case Snapshot">
+    <div class="header">Slide 17 — Case Snapshot (Template)</div>
+    <h2 class="h2">What success looks like (anonymized)</h2>
+    <div class="list">
+      <div class="card"><b>Challenge</b>: High CPC with low conversion on generic pages</div>
+      <div class="card"><b>Solution</b>: Dedicated city-specific microsites with localized content and instant booking</div>
+      <div class="card"><b>Results</b>: 3–8% CVR, 30-50% lower CPL, predictable lead flow</div>
+      <div class="card"><b>Scale</b>: Roll out to 15+ cities in under 4 weeks</div>
+      <div class="card"><b>Performance</b>: 90+ Lighthouse scores, <2s mobile load times</div>
+    </div>
+  </section>
+
+  <!-- Slide 18 — Next Steps -->
+  <section class="slide" data-title="Next Steps">
+    <div class="header">Slide 18 — Next Steps</div>
+    <h2 class="h2">Let's build your microsite network</h2>
+    <div class="list">
+      <div class="card"><b>1. Discovery call</b>: Review your current funnel, goals, and target cities</div>
+      <div class="card"><b>2. Pilot proposal</b>: 3–5 cities with projected CPL and timeline</div>
+      <div class="card"><b>3. Launch</b>: First sites live in 2 weeks</div>
+      <div class="card"><b>4. Optimize & scale</b>: Monthly reviews and new market expansion</div>
+    </div>
+    <div style="margin-top:24px">
+      <a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank" class="cta">Book Your Free Strategy Call →</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- Mobile Navigation Buttons -->
+<div class="mobile-nav-buttons">
+  <button class="mobile-nav-btn" id="mobilePrevBtn" aria-label="Previous slide">◀</button>
+  <button class="mobile-nav-btn" id="mobileNextBtn" aria-label="Next slide">▶</button>
+</div>
+
+<!-- Navigation indicator -->
+<div class="nav" id="nav">
+  <div class="progress"><i id="progress"></i></div>
+  <span id="counter">1 / 18</span>
+  <a href="transformation_deck-2.html" style="margin-left: 12px; color: var(--accent); text-decoration: none; font-weight: 600;">View Transformation Deck →</a>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const mobilePrevBtn = document.getElementById('mobilePrevBtn');
+  const mobileNextBtn = document.getElementById('mobileNextBtn');
+  let current = 0;
+  const total = slides.length;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${total}`;
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      next();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      prev();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      show(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      show(total - 1);
+    }
+  });
+
+  // Mobile button navigation
+  if (mobilePrevBtn) mobilePrevBtn.addEventListener('click', prev);
+  if (mobileNextBtn) mobileNextBtn.addEventListener('click', next);
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swiped left - go to next slide
+        next();
+      } else {
+        // Swiped right - go to previous slide
+        prev();
+      }
+    }
+  }
+
+  // Initialize
+  show(0);
+})();
+</script>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>InnovateForGood</h4>
+      <p style="color: #aaa; font-size: 14px; line-height: 1.6;">
+        Marketing that transforms businesses—and communities—for the better.
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="transformation_deck-2.html">Transformation Deck</a></li>
+        <li><a href="microsites-deck.html">Microsites Deck</a></li>
+        <li><a href="evidence-brief.html">Evidence Briefs</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="dental.html">Dental Practices</a></li>
+        <li><a href="artists.html">Artists & Creators</a></li>
+        <li><a href="hvac.html">HVAC Contractors</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="https://calendar.app.google/D5x1V7Wth7gvfjFf8" target="_blank">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    © 2025 InnovateForGood. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

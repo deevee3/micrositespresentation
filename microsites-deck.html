@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City‑Targeted Microsite Network for Dentistry — Ruther Family Dentistry</title>
+<meta name="theme-color" content="#0b0f19">
+<style>
+:root{
+  --bg:#0b0f19; --fg:#eef2f7; --muted:#9aa4b2; --accent:#22c55e; --card:rgba(255,255,255,.06);
+  --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+*{box-sizing:border-box} html,body{height:100%;margin:0}
+body{
+  font-family:var(--font);
+  background: radial-gradient(1200px 800px at 80% -20%, rgba(34,197,94,.18), transparent), var(--bg);
+  color:var(--fg);
+}
+.deck{min-height:100vh;display:flex;flex-direction:column}
+.slide{
+  display:none; min-height:100vh; padding:clamp(24px,6vw,72px);
+  flex-direction:column; gap:24px;
+}
+.slide.active{display:flex}
+.header{letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:12px}
+.h1{font-size:clamp(32px,6vw,60px);line-height:1.05;font-weight:800;margin:0}
+.h2{font-size:clamp(22px,4vw,36px);line-height:1.15;margin:0 0 8px;font-weight:800}
+.sub{font-size:clamp(16px,2.6vw,22px);color:#cfd7e3;max-width:64ch;margin:0}
+.list{display:grid;gap:10px;max-width:960px}
+.card{background:var(--card);padding:14px 16px;border-radius:12px}
+.row{display:grid;grid-template-columns:1fr;gap:10px}
+.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:860px){.cols-2,.cols-3{grid-template-columns:1fr}}
+.bad{color:#fda4af}.good{color:#86efac}.token{color:var(--accent);font-weight:700}
+.sitenav{position:fixed;top:0;left:0;right:0;background:rgba(11,15,25,.95);padding:16px 24px;display:flex;gap:24px;align-items:center;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.3);justify-content:center;backdrop-filter:blur(10px)}
+.sitenav a{color:var(--fg);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s;padding:8px 12px;border-radius:6px}
+.sitenav a:hover{color:var(--accent);background:var(--card)}
+.sitenav a.home{font-weight:800;color:var(--accent);margin-right:auto}
+.footer{
+  margin-top:auto; display:flex;gap:16px;align-items:center;background:var(--card);
+  padding:12px 16px;border-radius:12px;align-self:flex-start
+}
+.footer img{height:28px;width:auto}
+.kbd{
+  display:inline-block;padding:2px 6px;border:1px solid #4b5563;border-radius:6px;
+  font-size:12px;background:rgba(255,255,255,.06);color:#cbd5e1
+}
+.nav{
+  position:fixed;bottom:10px;right:10px;display:flex;gap:8px;align-items:center;
+  background:var(--card);padding:8px 12px;border-radius:10px;font-size:12px;color:var(--muted)
+}
+.progress{height:3px;background:#1f2937;border-radius:999px;overflow:hidden;margin:0 0 6px}
+.progress > i{display:block;height:100%;width:0;background:var(--accent)}
+.hr{height:1px;background:rgba(255,255,255,.12);border:none;margin:8px 0}
+.bullets{display:grid;gap:8px;max-width:960px}
+.bullets > div::before{content:"• ";color:var(--accent);font-weight:700}
+.cta{
+  display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#06250f;
+  padding:12px 18px;border-radius:10px;font-weight:800;text-decoration:none
+}
+.note{font-size:13px;color:#cbd5e1}
+.small{font-size:14px;color:#cbd5e1}
+.table{width:100%;max-width:1000px;border-collapse:separate;border-spacing:0 8px}
+.table td{padding:10px 12px;background:var(--card);border-radius:8px}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#a5b4fc}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a href="landing.html" class="home">InnovateForGood</a>
+  <a href="index.html">Transformation Deck</a>
+  <a href="microsites-deck.html">Microsites Deck</a>
+  <a href="long_form_sales_letter-2.html">Sales Letter</a>
+  <a href="innovateforgooduk.html">Book a Call</a>
+</nav>
+<div style="height:60px"></div>
+<div class="deck" id="deck">
+
+  <!-- Slide 1 — Title -->
+  <section class="slide active" data-title="Title">
+    <div class="header">Slide 1 — Title</div>
+    <h1 class="h1">City‑Targeted Microsite Network for <span class="token">Dentistry</span></h1>
+    <p class="sub">Predictable, scalable local lead generation for high‑intent searches—built for Ruther Family Dentistry.</p>
+    <div class="footer">
+      <img src="https://rutherdentistry.com/favicon.ico" alt="Ruther Family Dentistry logo" onerror="this.style.display='none'">
+      <div>
+        <div>Ruther Family Dentistry</div>
+        <div class="small">rutherdentistry.com • Montgomery, OH</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 2 — The Problem We Solve -->
+  <section class="slide" data-title="Problem">
+    <div class="header">Slide 2 — The Problem We Solve</div>
+    <h2 class="h2">High‑intent dental traffic is leaking—quietly and expensively</h2>
+    <div class="bullets">
+      <div>Prospects search "Cincinnati ceramic implants," "Invisalign near me," or "cosmetic dentist" and land on slow, generic pages.</div>
+      <div>Brand sites aren't built to convert one local intent—too many links, not enough action.</div>
+      <div>Phones are busy; form leads wait hours. Motivation fades and the first helpful responder wins.</div>
+      <div>Ad costs climb while conversion stalls, making growth unpredictable.</div>
+    </div>
+    <div class="footer"><span class="kbd">←</span> <span class="kbd">→</span> Navigate • Focus: transformation, not tactics</div>
+  </section>
+
+  <!-- Slide 3 — Our Solution -->
+  <section class="slide" data-title="Solution">
+    <div class="header">Slide 3 — Our Solution</div>
+    <h2 class="h2">A portfolio of ultra‑fast, city‑targeted microsites that turn clicks into consults</h2>
+    <div class="list">
+      <div class="card">Localized copy and trust signals for each city/neighborhood</div>
+      <div class="card">Mobile‑first lead capture and tap‑to‑call—no dead ends</div>
+      <div class="card">Automated deployment to add new markets in minutes</div>
+      <div class="card">Structured data for Local SEO and clear attribution</div>
+    </div>
+    <div class="footer">Built to capture implant, aligner, and cosmetic intent—consistently</div>
+  </section>
+
+  <!-- Slide 4 — Why Microsites Win Now -->
+  <section class="slide" data-title="Why Now">
+    <div class="header">Slide 4 — Why Microsites Win Now</div>
+    <h2 class="h2">Match intent. Remove friction. Win first.</h2>
+    <div class="row cols-2">
+      <div class="card"><span class="token">Local intent</span>: "[city] ceramic implants" pages speak to one need—book a consult.</div>
+      <div class="card"><span class="token">Speed = revenue</span>: sub‑2s loads reduce bounce and keep buyers engaged.</div>
+      <div class="card"><span class="token">Singular focus</span>: one job—capture the lead or the call.</div>
+      <div class="card"><span class="token">Scale</span>: add cities fast via content JSON—no CMS bloat.</div>
+    </div>
+  </section>
+
+  <!-- Slide 5 — What's Inside Each Microsite -->
+  <section class="slide" data-title="Inside">
+    <div class="header">Slide 5 — What's Inside Each Microsite</div>
+    <h2 class="h2">Everything needed to convert a motivated visitor—nothing extra</h2>
+    <div class="row cols-3">
+      <div class="card">Hero with city‑specific headline and reassurance badges</div>
+      <div class="card">Sticky "Tap to Call" bar on mobile</div>
+      <div class="card">5‑field lead form with validation and privacy note</div>
+      <div class="card">Testimonials and rating snippet (optional)</div>
+      <div class="card">FAQ + LocalBusiness/FAQ JSON‑LD</div>
+      <div class="card">Clear CTAs: Call now or Request consult</div>
+    </div>
+  </section>
+
+  <!-- Slide 6 — How It Works -->
+  <section class="slide" data-title="How It Works">
+    <div class="header">Slide 6 — How It Works</div>
+    <h2 class="h2">From idea to live city pages in days, not months</h2>
+    <div class="list">
+      <div class="card"><b>1. Choose focus</b>: implants, ceramic implants, aligners, cosmetic</div>
+      <div class="card"><b>2. Pick cities</b>: Cincinnati neighborhoods + nearby suburbs</div>
+      <div class="card"><b>3. Localize</b>: copy, offers, trust, FAQs, schema</div>
+      <div class="card"><b>4. Deploy</b>: Cloudflare edge + mapped domains</div>
+      <div class="card"><b>5. Track</b>: calls, form submits, and attribution</div>
+    </div>
+  </section>
+
+  <!-- Slide 7 — Tech Advantage -->
+  <section class="slide" data-title="Tech Advantage">
+    <div class="header">Slide 7 — Tech Advantage</div>
+    <h2 class="h2">Fast, reliable, low‑maintenance by design</h2>
+    <div class="row cols-2">
+      <div class="card">Static export on global edge (Cloudflare Pages)</div>
+      <div class="card">JSON content—no CMS to maintain</div>
+      <div class="card">Automated tests and Lighthouse performance checks</div>
+      <div class="card">Accessible, secure, SEO‑friendly defaults</div>
+    </div>
+  </section>
+
+  <!-- Slide 8 — UX That Converts on Mobile -->
+  <section class="slide" data-title="Mobile UX">
+    <div class="header">Slide 8 — UX That Converts on Mobile</div>
+    <h2 class="h2">Built for thumbs: clarity, speed, and confidence</h2>
+    <div class="list">
+      <div class="card">Sticky Call Bar with tracking</div>
+      <div class="card">One‑tap service selection pills</div>
+      <div class="card">Autocomplete and input‑mode optimized fields</div>
+      <div class="card">Reassurance microcopy and instant error messages</div>
+    </div>
+  </section>
+
+  <!-- Slide 9 — Local SEO Strategy -->
+  <section class="slide" data-title="Local SEO">
+    <div class="header">Slide 9 — Local SEO Strategy</div>
+    <h2 class="h2">Show up for local intent—and look like a local leader</h2>
+    <div class="list">
+      <div class="card">City + neighborhood + ZIP references</div>
+      <div class="card">LocalBusiness and FAQPage JSON‑LD</div>
+      <div class="card">Consistent NAP and canonical per domain</div>
+      <div class="card">Lightning‑fast pages lower bounce and lift rankings</div>
+    </div>
+  </section>
+
+  <!-- Slide 10 — Results You Can Expect -->
+  <section class="slide" data-title="Results">
+    <div class="header">Slide 10 — Results You Can Expect</div>
+    <h2 class="h2">Predictable lift in paid and organic efficiency</h2>
+    <table class="table" role="table" aria-label="Expected metrics">
+      <tr><td><b>Conversion rate</b></td><td>3–8% typical for local services (traffic‑dependent)</td></tr>
+      <tr><td><b>Page speed</b></td><td>< 2s on 3G; 90+ Lighthouse</td></tr>
+      <tr><td><b>Deployment</b></td><td>New city live in < 15 minutes</td></tr>
+      <tr><td><b>Reporting</b></td><td>Weekly rollups with clear CPL</td></tr>
+    </table>
+    <p class="note">Benchmarks vary by channel and market. We'll model outcomes with your numbers.</p>
+  </section>
+
+  <!-- Slide 11 — ROI Model -->
+  <section class="slide" data-title="ROI Model">
+    <div class="header">Slide 11 — ROI Model</div>
+    <h2 class="h2">From traffic to revenue—simple math, full visibility</h2>
+    <div class="list">
+      <div class="card">Leads = Sessions × Conversion Rate</div>
+      <div class="card">SQLs = Leads × Qualification Rate</div>
+      <div class="card">Closed = SQLs × Close Rate</div>
+      <div class="card">Revenue = Closed × Avg Case Value</div>
+      <div class="card">CPL = Spend ÷ Leads • CAC = Spend ÷ Closed • ROAS = Revenue ÷ Spend</div>
+    </div>
+    <p class="note">We provide a calculator to estimate CPL and payback per city.</p>
+  </section>
+
+  <!-- Slide 12 — Pricing Options -->
+  <section class="slide" data-title="Pricing">
+    <div class="header">Slide 12 — Pricing Options</div>
+    <h2 class="h2">Choose the model that matches your growth plan</h2>
+    <div class="row cols-3">
+      <div class="card"><b>Subscription</b><div class="hr"></div>$X–$Y per city/month (hosting, updates, reporting)</div>
+      <div class="card"><b>Performance</b><div class="hr"></div>$Z per qualified lead (filters defined upfront)</div>
+      <div class="card"><b>Hybrid</b><div class="hr"></div>Lower subscription + reduced per‑lead fee</div>
+    </div>
+    <div class="list" style="margin-top:12px">
+      <div class="card">Add‑ons: CRM integrations, call tracking, review widgets, content variants, citations, advanced reporting</div>
+    </div>
+  </section>
+
+  <!-- Slide 13 — Implementation Timeline -->
+  <section class="slide" data-title="Timeline">
+    <div class="header">Slide 13 — Implementation Timeline</div>
+    <h2 class="h2">From pilot to scale in under a month</h2>
+    <div class="list">
+      <div class="card"><b>Week 0</b>: Discovery (brand, offers, cities, compliance)</div>
+      <div class="card"><b>Week 1</b>: Design system + content templates</div>
+      <div class="card"><b>Week 2</b>: Launch first 5 cities + tracking + QA</div>
+      <div class="card"><b>Weeks 3–4</b>: Scale to 20+ cities; baselines + optimizations</div>
+      <div class="card"><b>Ongoing</b>: Monthly iterations; new markets in minutes</div>
+    </div>
+  </section>
+
+  <!-- Slide 14 — Integrations and Governance -->
+  <section class="slide" data-title="Integrations">
+    <div class="header">Slide 14 — Integrations & Governance</div>
+    <h2 class="h2">Plug into your stack—governed and versioned</h2>
+    <div class="row cols-2">
+      <div class="card"><b>Out‑of‑the‑box</b>: Email delivery, UTM capture, call tracking ready</div>
+      <div class="card"><b>Optional</b>: Zapier/Make → CRM, CallRail/Twilio, GA4/Plausible, GTM</div>
+      <div class="card"><b>Governance</b>: Git change control, PR approvals, audit history</div>
+      <div class="card"><b>Compliance</b>: Accessibility and security baked in</div>
+    </div>
+  </section>
+
+  <!-- Slide 15 — Risk and Objection Handling -->
+  <section class="slide" data-title="Objections">
+    <div class="header">Slide 15 — Risk & Objections</div>
+    <h2 class="h2">Common questions—answered upfront</h2>
+    <div class="list">
+      <div class="card"><b>Brand dilution?</b> Custom theming and content guidelines; shared components ensure consistency.</div>
+      <div class="card"><b>SEO cannibalization?</b> Unique localized content, clean canonicals, and disciplined domain strategy.</div>
+      <div class="card"><b>Lead quality?</b> Form design + qualification rules; optional call recording and lead scoring.</div>
+      <div class="card"><b>Maintenance?</b> JSON content + CI/CD mean edits deploy in minutes with version control.</div>
+    </div>
+  </section>
+
+  <!-- Slide 16 — Vertical Templates -->
+  <section class="slide" data-title="Templates">
+    <div class="header">Slide 16 — Vertical Templates</div>
+    <h2 class="h2">Reusable patterns for any vertical</h2>
+    <div class="row cols-2">
+      <div class="card"><b>Dental/Med Spa</b>: financing banner, before/after policy, HIPAA‑safe forms (no PHI)</div>
+      <div class="card"><b>Home Services</b>: emergency intent, tap‑to‑call prominence, service area maps</div>
+      <div class="card"><b>Legal</b>: disclaimers, appointment booking, location trust cues</div>
+      <div class="card"><b>B2B SaaS</b>: demo flow, calendaring, social proof logos</div>
+    </div>
+  </section>
+
+  <!-- Slide 17 — Case Snapshot -->
+  <section class="slide" data-title="Case Snapshot">
+    <div class="header">Slide 17 — Case Snapshot</div>
+    <h2 class="h2">Ceramic implants pipeline—what success looks like</h2>
+    <div class="list">
+      <div class="card"><b>Challenge</b>: High CPC for "ceramic implants Cincinnati" with low conversion on main site</div>
+      <div class="card"><b>Solution</b>: Dedicated microsite with implant-specific content, financing info, and instant booking</div>
+      <div class="card"><b>Results</b>: 2.5× conversion rate improvement, 40% lower CPL, predictable lead flow</div>
+      <div class="card"><b>Scale</b>: Rolled out to 12 surrounding cities in 3 weeks</div>
+    </div>
+  </section>
+
+  <!-- Slide 18 — Next Steps -->
+  <section class="slide" data-title="Next Steps">
+    <div class="header">Slide 18 — Next Steps</div>
+    <h2 class="h2">Let's build your microsite network</h2>
+    <div class="list">
+      <div class="card"><b>1. Discovery call</b>: Review your current funnel, goals, and target cities</div>
+      <div class="card"><b>2. Pilot proposal</b>: 3–5 cities with projected CPL and timeline</div>
+      <div class="card"><b>3. Launch</b>: First sites live in 2 weeks</div>
+      <div class="card"><b>4. Optimize & scale</b>: Monthly reviews and new market expansion</div>
+    </div>
+    <div style="margin-top:24px">
+      <a href="https://rutherdentistry.com" class="cta">Schedule Discovery Call →</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- Navigation indicator -->
+<div class="nav" id="nav">
+  <div class="progress"><i id="progress"></i></div>
+  <span id="counter">1 / 18</span>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  let current = 0;
+  const total = slides.length;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${total}`;
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      show(current + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      show(current - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      show(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      show(total - 1);
+    }
+  });
+
+  // Initialize
+  show(0);
+})();
+</script>
+
+</body>
+</html>
